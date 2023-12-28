@@ -35,14 +35,29 @@ def cadastro(request):
 
         salvar = True
         _cpf = CPF()
-        '''if _cpf.validate(cpf) == False:
+        if _cpf.validate(cpf) == False:
             messages.error(request, 'CPF Inválido!')
-            salvar = False'''
+            salvar = False
         usuario = CustomUser.objects.filter(cpf = cpf)
+        if len(usuario) >= 1:
+            messages.error(request, 'CPF já cadastrado')
+            salvar = False
+        
+        if validaData(data_nascimento) == False:
+            messages.error(request, 'Data inválida')
+            salvar = False
+        
+        if senha1 != senha2:
+            messages.error(request, 'As senhas não coincidem')
 
-        if salvar == True:
-            CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento= data_nascimento, grupos_atendimento = grupo_atendimento, teve_covid = teve_covid, password=senha1) 
-            messages.success(request, 'Cadastro realizado com sucesso!')
+        if salvar and True:
+            try:
+                CustomUser.objects.create_user(nome_completo=nome_completo, nome_social=nome_social, cpf=cpf, nasc=nasc, estado=estado, cidade=cidade, password=senha1)
+                messages.success(
+                    request, 'Cadastro realizado com sucesso!')
+            except:
+                messages.error(
+                    request, 'Usuario já está cadastrado')
             
         ''' except:
                 messages.error(
@@ -66,7 +81,7 @@ def cadastro(request):
 
 def login(request):
     if request.user.is_authenticated == True:
-        return redirect('pag-inicial')
+        return redirect('lista_usuarios')
     if request.method == 'POST':
         cpf = request.POST.get('cpf')
         senha = request.POST.get('senha')
