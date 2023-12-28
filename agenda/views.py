@@ -13,6 +13,7 @@ import datetime
 from django.utils import timezone
 from django.db.models import Count, Max, Min, Sum
 from time import time
+import xml.etree.ElementTree as ET
 import calendar
 
 
@@ -47,9 +48,39 @@ def cadastro(request):
                 messages.error(
                     request, 'Usuario já está cadastrado')
                 salvar = False'''
+    
+    tree = ET.parse('agenda/dados/grupos_atendimento.xml')
+    root = tree.getroot()
 
-    return render(request, "cadastro.html")
+    # Extrai dados do XML
+    dados_xml = []
+    for grupo in root.findall('.//grupoatendimento'):
+        nome = grupo.find('nome').text
+        #print(nome)
+        dados_xml.append(nome)
+    
+    
+
+    return render(request, "cadastro.html", {'dados_xml': dados_xml})
+
+
+def login(request):
+    if request.user.is_authenticated == True:
+        return redirect('pag-inicial')
+    if request.method == 'POST':
+        cpf = request.POST.get('cpf')
+        senha = request.POST.get('senha')
+        user = authenticate(request, cpf=cpf, password=senha)
+        if user is not None:
+            authlogin(request,user)
+            return redirect('lista_usuarios')
+        else:
+            messages.error(request, 'CPF ou Senha Incorreta!')
+    return render(request, "login.html")
+
 
 def lista_usuarios(request):
-    usuarios = CustomUser.objects.all()
-    return render(request, "lista_usuarios.html", {'usuarios': usuarios})
+    # se usuario esta autenticado libere
+    if request.user.is_authenticated == True:
+        usuarios = CustomUser.objects.all()
+        return render(request, "lista_usuarios.html", {'usuarios': usuarios})

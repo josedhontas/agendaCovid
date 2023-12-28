@@ -20,7 +20,8 @@ from agenda.views import *
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('', cadastro, name='cadastro'),
+    path('', login, name='login'),
+    path('cadastro/', cadastro, name='cadastro'),
     path('usuarios/', lista_usuarios, name='lista_usuarios')
 
 ]

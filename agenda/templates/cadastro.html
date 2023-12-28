@@ -87,22 +87,13 @@
                     <i class="input-group-text bi bi-pin-map"></i>
                     <input class="form-control  " type="text" value="Selecione um Estado" aria-label="readonly input example" readonly>
             </div>
-            <select name="grupo_atendimento" required class="form-select ">
-              
-          
-              <option   name="RN" value="RN"> Rio Grande do Norte
-              <option   name="PB" value="PB"> Paraiba
-              <option   name="CE" value="CE"> Ceará
-              <option   name="MA" value="MA"> Maranhão
-              <option   name="AL" value="AL"> Alagoas
-              <option   name="SE" value="SE"> Sergipe
-              <option   name="BA" value="BA"> Bahia
-              <option   name="PI" value="PI"> Piauí
-              <option   name="PE" value="PE"> Pernambuco
-            
-              </select>
-              
-            </div>
+                  <select name="grupo_atendimento" required class="form-select">
+                    <option value=""></option>
+                      {% for dado in dados_xml %}
+                          <option value="{{ dado }}">{{ dado }}</option>
+                      {% endfor %}
+                  </select>
+
             
 
             <div class="row align-items-center mt-4">
