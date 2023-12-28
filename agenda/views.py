@@ -50,11 +50,20 @@ def cadastro(request):
         if senha1 != senha2:
             messages.error(request, 'As senhas não coincidem')
 
+        if teve_covid:
+            messages.error(request, '')
+        
+        grupos_nao_atendidos = ["População Privada de Liberdade", "Pessoas com Deficiência Institucionalizadas", "Pessoas ACAMADAS de 80 anos ou mais"]
+
+        if grupo_atendimento in grupos_nao_atendidos:
+            salvar = False
+            messages.error(request, 'Grupo não atentidido')
+
         if salvar and True:
             try:
-                CustomUser.objects.create_user(nome_completo=nome_completo, nome_social=nome_social, cpf=cpf, nasc=nasc, estado=estado, cidade=cidade, password=senha1)
-                messages.success(
-                    request, 'Cadastro realizado com sucesso!')
+                CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento= data_nascimento, grupos_atendimento = grupo_atendimento, teve_covid = teve_covid, password=senha1) 
+                messages.success(request, 'Cadastro realizado com sucesso!')
+
             except:
                 messages.error(
                     request, 'Usuario já está cadastrado')
