@@ -88,7 +88,7 @@
                     <input class="form-control  " type="text" value="Selecione um Estado" aria-label="readonly input example" readonly>
             </div>
                   <select name="grupo_atendimento" required class="form-select">
-                    <option value=""></option>
+                    <option value="Nenhum"> Nenhum</option>
                       {% for dado in dados_xml %}
                           <option value="{{ dado }}">{{ dado }}</option>
                       {% endfor %}
