@@ -1,0 +1,24 @@
+<!-- lista_usuarios.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+</head>
+<body>
+    <h1>Lista de Usuários</h1>
+
+    <ul>
+        {% for usuario in usuarios %}
+            <li>
+                Nome: {{ usuario.nome_completo }}<br>
+                CPF: {{ usuario.cpf }}<br>
+                Data de Nascimento: {{ usuario.data_nascimento }}<br>
+                Grupo de Atendimento: {{ usuario.grupos_atendimento }}<br>
+                Teve COVID: {{ usuario.teve_covid }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
