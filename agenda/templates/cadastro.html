@@ -139,7 +139,7 @@
     }
     
     .grupo-entrada{
-        height: 420px;
+        height: 380px;
     }
     
     
@@ -158,8 +158,8 @@
   }
 
   .campo-entrada .formulario-select {
-    max-width: 100%; /* Ajusta para o máximo possível dentro do contêiner pai */
-    width: 100%; /* Garante que o dropdown ocupe toda a largura disponível */
+    max-width: 100%; 
+    width: 100%;
 }
     </style>
 </head>
@@ -168,7 +168,7 @@
     <div class="container2">
         <div class="formulario">
             <h1>Cadastro</h1>
-            <formulario action="" method="post">
+            <form action="" method="post">
                 {% csrf_token %} 
                 <div class="grupo-entrada">
                     <div class="campo-entrada">
@@ -192,16 +192,24 @@
                     <div id="meio">
                         <div class="campo-entrada">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" placeholder="Senha">
+                            <input type="password" placeholder="Senha" name="senha1" required>
                         </div>
                         <div class="campo-entrada">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" placeholder="Confirmar senha">
+                            <input type="password" placeholder="Confirmar senha" name="senha2" required>
                         </div>
                     </div>
-                    <div class="texto">
-                      <span> Teve covid no ultimos 30 dias?</span>
-                  </div>
+                  <div class="campo-entrada">
+                    <select name="grupo_atendimento" required class="formulario-select">
+                        <option value="Nenhum"> Nenhum</option>
+                        {% for dado in dados_xml %}
+                        <option value="{{ dado }}">{{ dado }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="texto">
+                  <span> Teve covid no ultimos 30 dias?</span>
+              </div>
                     <div class="all-divs">
                       <div class="campo-entrada">
                           <label>
@@ -215,20 +223,40 @@
                       </div>
                   </div>
 
-
-                  <div class="campo-entrada">
-                    <select name="grupo_atendimento" required class="formulario-select">
-                        <option value="Nenhum"> Nenhum</option>
-                        {% for dado in dados_xml %}
-                        <option value="{{ dado }}">{{ dado }}</option>
-                        {% endfor %}
-                    </select>
                 </div>
+                
 
-                </div>
+                <div class="row justify-content-start my-4">
+                  <div class="col">
+                
+                    <!-- Sucess messages -->
+                    {% if messages %}
+                    {% for message in messages %}
+                      {%if message.tags == 'success' %}
+                  <div class="alert alert-success alert-dismissible fade show " role="alert">
+                    <strong>Atenção: </strong> 
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                  
+                  <!-- Error Mesages -->
+                  
+                  {% if messages %}
+              {% for message in messages %}
+                {%if message.tags == 'error' %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Atenção!</strong> {{message}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
                 <div class="botoes">
-                    <button type="submit" id="signupBtn">Cadastro</button>
-                    <button type="button" id="signinBtn" class="disable">Entrar</button>
+                    <button type="button" id="entrar" class="disable">Voltar</button>
+                    <button type="submit" id="cadastro">Cadastro</button>
                 </div>
             </formulario>
         </div>
@@ -236,14 +264,17 @@
 
 
     <script>
-        signinBtn.onclick = function () {
-            signupBtn.classList.add("disable")
-            signinBtn.classList.remove("disable")
+        entrar.onclick = function () {
+            cadastro.classList.add("disable")
+            entrar.classList.remove("disable")
+            setTimeout(function() {
+              window.location.href = "/"
+                      }, 500);
         }
 
-        signupBtn.onclick = function () {
-            signinBtn.classList.add("disable")
-            signupBtn.classList.remove("disable")
+        cadastro.onclick = function () {
+            entrar.classList.add("disable")
+            cadastro.classList.remove("disable")
         }
     </script>
 </body>
