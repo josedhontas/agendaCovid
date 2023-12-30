@@ -16,3 +16,16 @@ class CustomUser(AbstractUser):
     objects = UserManager()
     USERNAME_FIELD = 'cpf'
     REQUIRED_FIELDS = []
+
+
+class Estabelecimento(models.Model):
+    cnes = models.CharField(primary_key = True, max_length=20)
+    nome = models.CharField(max_length=100)
+
+class Agendamento(models.Model):
+    id = models.AutoField(primary_key=True)
+    usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    estabelecimento = models.ForeignKey(Estabelecimento, on_delete=models.CASCADE)
+    data_agendamento = models.DateTimeField()
+
+
