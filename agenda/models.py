@@ -12,7 +12,7 @@ class CustomUser(AbstractUser):
     cpf = models.CharField(primary_key = True, max_length=11)
     data_nascimento = models.DateField(default=timezone.now)
     grupos_atendimento = models.CharField(max_length=100, blank=True, null=True)
-    teve_covid = models.BooleanField(default= False)
+    apto_agendamento = models.BooleanField(default= False)
     objects = UserManager()
     USERNAME_FIELD = 'cpf'
     REQUIRED_FIELDS = []

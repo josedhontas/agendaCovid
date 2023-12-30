@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/estilos3.css">
+
+    <style>
+
+        body{
+            margin: 0;
+            background-color: #f1f1f1;
+        
+        }
+        
+        
+        @font-face {
+            font-family: "negrito"; 
+            src: local("Arial"), local("Helvetica"), sans-serif;
+        }
+        
+        @font-face {
+            font-family: "padrao"; 
+            src: local("Arial"), local("Helvetica"), sans-serif;
+        }
+        
+        
+        
+        :root{
+            --cor-destaque: #5333ed;
+        }
+        
+        /* marca*/
+        
+        #marca {
+            background-color: white;
+            padding: 10px;
+        }
+        
+        #marca img {
+            width: 40px;
+            margin-right: 10px;
+        }
+        
+        #marca *{
+            vertical-align: middle;
+        }
+        
+        #marca span { 
+            font-family: "negrito";
+            font-size: 150%;
+            color: var(--cor-destaque)
+        }
+        
+        
+        /* header - cabecalho*/
+        
+        #header{
+            background-image: linear-gradient(to right, #4d13d1, #59abe3);
+            padding: 50px 10px 30px 30px;
+            /* cima, direita, baixo, esquerda*/
+            color: white
+        }
+        
+        #boasVindas {
+            font-family: "negrito";
+            font-size: 500%;
+            display: block
+            /* display block nao permite ninguem do lado dele*/
+        }
+        
+        #slogan {
+            font-family: "padrao";
+            font-size: 200%
+        }
+        
+        /*COntainer */
+        
+        #container{
+            padding: 10px;
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        /* Seção da esquerda*/
+        
+        #esquerda{
+            width: 60%;
+            padding: 10px;
+        }
+        
+        #pessoal{
+            font-family: "negrito";
+            font-size: 200%;
+        }
+        
+        
+        #novoLancamento{
+            float: right;
+            border: none;
+            background-color: var(--cor-destaque);
+            color: white;
+            font-size: 150%;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        
+        #areaPessoal{
+            margin-top: 30px;
+        }
+        
+        .blocoLancamento{
+            background-color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        
+        }
+        
+        .blocoLancamento img{
+            width: 50px;
+        }
+        
+        .descricaoLancamento{
+            float: left;
+            text-align:left;
+        }
+        
+        .descricaoLancamento span{
+            display: flex;
+            font-family: "padrao";
+        }
+        
+        .valor{
+            font-family: "negrito" !important;
+            font-size: 150%;
+            
+        }
+        
+        .gasto{
+            color: red;
+        }
+        
+        .entrada{
+            color: #22a7f0;
+        }
+        
+        
+        #direita{
+            background-color: white ;
+            border-radius: 20px;
+            width: 40%;
+            padding: 30px;
+            text-align: center;
+            font-family: "negrito";
+        
+        }
+        
+        #direita img{
+            width: 30px;
+        }
+        
+        #labelAgendamento{
+            font-size: 250%;
+            display: flex;
+            justify-content: center; 
+        }
+        
+        
+        #renda{
+            font-size: 500%;
+            color: var(--cor-destaque)
+        }
+        
+        
+
+    </style>
+</head>
+<body>
+    <div id="marca">
+        <img src="img/LogoJulius.png" alt="Agenda Covid">
+        <span> Agenda Covid</span>
+    </div>
+
+    <div id="container">
+        <div id="esquerda">
+            <span id="pessoal"> Informação pessoal </span>
+            <div id="areaPessoal">
+                <div class="blocoLancamento">
+                    <div class="descricaoLancamento">
+                        <span class="valor ">Nome: {{nome}}</span>
+                    </div>
+                </div>
+
+                <div class="blocoLancamento">
+                    <div class="descricaoLancamento">
+                        <span class="valor ">Data nascimento: {{data_nascimento}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="blocoLancamento">
+                <div class="descricaoLancamento">
+                    <span class="valor ">CPF: {{cpf}}</span>
+                </div>
+            </div>
+            <div class="blocoLancamento">
+                <div class="descricaoLancamento">
+                    <span class="valor ">Apto para agendamento: {{apto_agendamento}}</span>
+                </div>
+            </div>
+        </div>
+        <div id="direita">
+            <span id="labelAgendamento"> Agendamento</span>
+        </div>
+    </div>
+    
+</body>
+</html>

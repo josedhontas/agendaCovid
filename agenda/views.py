@@ -16,6 +16,7 @@ def cadastro(request):
         teve_covid = request.POST.get('teve_covid') == 'sim'
         senha1 = request.POST.get('senha1')
         senha2 = request.POST.get('senha2')
+        apto_agendamento = True
 
         _cpf = CPF()
         if not _cpf.validate(cpf):
@@ -32,7 +33,7 @@ def cadastro(request):
             messages.error(request, 'Grupo não atendido')
         else:
             try:
-                CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento=data_nascimento, grupos_atendimento=grupo_atendimento, teve_covid=teve_covid, password=senha1)
+                CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento=data_nascimento, grupos_atendimento=grupo_atendimento, apto_agendamento=apto_agendamento, password=senha1)
                 messages.success(request, 'Cadastro realizado com sucesso!')
             except:
                 messages.error(request, 'Usuário já está cadastrado')
@@ -44,19 +45,32 @@ def cadastro(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('lista_usuarios')
+        return redirect('pag_inicial')
     if request.method == 'POST':
         cpf = request.POST.get('cpf')
         senha = request.POST.get('senha')
         user = authenticate(request, cpf=cpf, password=senha)
         if user is not None:
             authlogin(request, user)
-            return redirect('lista_usuarios')
+            return redirect('pag_inicial')
         else:
             messages.error(request, 'CPF ou Senha Incorreta!')
     return render(request, "login.html")
 
-def lista_usuarios(request):
+def pag_inicial(request):
     if request.user.is_authenticated:
-        usuarios = CustomUser.objects.all()
-        return render(request, "lista_usuarios.html", {'usuarios': usuarios})
+        nome = request.user.nome_completo
+        cpf = request.user.cpf
+        data_nascimento = request.user.data_nascimento
+        apto_agendamento = request.user.apto_agendamento
+
+        apto_agendamento_str = "Sim" if apto_agendamento else "Não"
+
+        
+        context = {
+            'cpf' : str(cpf),
+            'nome': str(nome),
+            'data_nascimento': str(data_nascimento),
+            'apto_agendamento': apto_agendamento_str
+        }
+        return render(request, "pag_inicial.html", context)
