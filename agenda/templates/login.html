@@ -187,18 +187,21 @@
         </div>
     </div>
 
-
     <script>
-        entrar.onclick = function(){
-            cadastro.classList.add("disable")
-            entrar.classList.remove("disable")
-        }
-
-        cadastro.onclick = function(){
-            entrar.classList.add("disable")
-            cadastro.classList.remove("disable")
-        }
-    </script>
+      entrar.onclick = function(){
+          cadastro.classList.add("disable")
+          entrar.classList.remove("disable")
+      }
+  
+      cadastro.onclick = function(){
+          entrar.classList.add("disable")
+          cadastro.classList.remove("disable")
+          setTimeout(function() {
+            window.location.href = "cadastro"; 
+        }, 500);
+      }
+  </script>
+  
 </body>
 
 </html>

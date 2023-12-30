@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
     <script src="https://kit.fontawesome.com/e73b592546.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
       *{
@@ -17,7 +22,7 @@
         box-sizing: border-box;
     }
     
-    .container{
+    .container2{
         width: 100%;
         height: 100vh;
         background-image: linear-gradient(rgba(0, 0, 50, 0.8), rgba(0, 0, 50, 0.8)), url(../img/background.png);
@@ -39,7 +44,7 @@
     }
     
     
-    .form-box{
+    .formulario{
         width: 90%;
         max-width: 450px;
         position: absolute;
@@ -53,14 +58,14 @@
         align-items: center;
     }
     
-    .form-box h1{
+    .formulario h1{
         font-size: 30px;
         margin-bottom: 60px;
         color: #3c00a0;
         position: relative;
     }
     
-    .form-box h1::after{
+    .formulario h1::after{
         content: '';
         width: 30px;
         height: 4px;
@@ -72,9 +77,9 @@
         transform: translateX(-50%);
     }
     
-    .input-field{
+    .campo-entrada{
         background: #eaeaea;
-        margin: 15px 10px;
+        margin: 10px 3px;
         border-radius: 5px;
         display: flex;
         align-items: center;
@@ -100,17 +105,17 @@
         
     }
     
-    .input-field i{
+    .campo-entrada i{
         margin-left: 15px;
         color: #999
     }
     
-    form p{
+    formulario p{
         text-align: left;
         font-size: 13px;
     }
     
-    form p a{
+    formulario p a{
         text-decoration: none;
         color: #3c00a0;
     }
@@ -133,8 +138,8 @@
         transition: 1s;
     }
     
-    .input-group{
-        height: 380px;
+    .grupo-entrada{
+        height: 420px;
     }
     
     
@@ -143,64 +148,89 @@
         color: #555;
     
     }
+
+    .all-divs{ 
+      text-align:justify; 
+      display:flex; 
+      flex-direction:column; 
+      align-items:center; 
+      justify-content:center; 
+  }
+
+  .campo-entrada .formulario-select {
+    max-width: 100%; /* Ajusta para o máximo possível dentro do contêiner pai */
+    width: 100%; /* Garante que o dropdown ocupe toda a largura disponível */
+}
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="form-box">
+    <div class="container2">
+        <div class="formulario">
             <h1>Cadastro</h1>
-            <form action="" method="post">
+            <formulario action="" method="post">
                 {% csrf_token %} 
-                <div class="input-group">
-                    <div class="input-field">
+                <div class="grupo-entrada">
+                    <div class="campo-entrada">
                         <i class="fa-solid fa-user"></i>
                         <input type="text" placeholder="Nome Completo" name="nome_completo" required>
                     </div>
-                    <div class="input-field">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="number" placeholder="CPF (Apenas Números)" name="cpf" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fa-solid fa-calendar"></i>
-                        <input type="date" placeholder="Data de Nascimento" name="data_nascimento" required>
-                    </div>
                     <div id="meio">
-                        <div class="input-field">
+                      <div class="esquerda">
+                          <div class="campo-entrada">
+                              <i class="fa-solid fa-envelope"></i>
+                              <input type="number" placeholder="CPF (Números)" name="cpf" required>
+                          </div>
+                      </div>
+                      <div class="direita">
+                      <div class="campo-entrada">
+                          <i class="fa-solid fa-calendar"></i>
+                          <input type="date" placeholder="Data de Nascimento" name="data_nascimento" required>
+                      </div>
+                      </div>
+                  </div>
+                    <div id="meio">
+                        <div class="campo-entrada">
                             <i class="fa-solid fa-lock"></i>
                             <input type="password" placeholder="Senha">
                         </div>
-                        <div class="input-field">
+                        <div class="campo-entrada">
                             <i class="fa-solid fa-lock"></i>
                             <input type="password" placeholder="Confirmar senha">
                         </div>
                     </div>
+                    <div class="texto">
+                      <span> Teve covid no ultimos 30 dias?</span>
+                  </div>
+                    <div class="all-divs">
+                      <div class="campo-entrada">
+                          <label>
+                              <input type="radio" name="teve_covid" value="sim">
+                              <span>Sim</span>
+                          </label>
+                          <label>
+                              <input type="radio" name="teve_covid" value="nao">
+                              <span>Não</span>
+                          </label>
+                      </div>
+                  </div>
 
-                    <div class="input-field">
-                        <label>
-                            <input type="radio" name="teve_covid" value="sim">
-                            <span>Sim</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="teve_covid" value="nao">
-                            <span>Não</span>
-                        </label>
-                    </div>
 
-                    <select name="grupo_atendimento" required class="form-select">
+                  <div class="campo-entrada">
+                    <select name="grupo_atendimento" required class="formulario-select">
                         <option value="Nenhum"> Nenhum</option>
-                          {% for dado in dados_xml %}
-                              <option value="{{ dado }}">{{ dado }}</option>
-                          {% endfor %}
-                      </select>
+                        {% for dado in dados_xml %}
+                        <option value="{{ dado }}">{{ dado }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-                    <p> Lost password <a href="#">Click Here!</a></p>
                 </div>
                 <div class="botoes">
                     <button type="submit" id="signupBtn">Cadastro</button>
                     <button type="button" id="signinBtn" class="disable">Entrar</button>
                 </div>
-            </form>
+            </formulario>
         </div>
     </div>
 
