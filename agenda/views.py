@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as authlogin
+from django.contrib.auth import authenticate, login as authlogin, logout
 from validate_docbr import CPF
 from .models import CustomUser
 from .manager import *
@@ -74,3 +74,8 @@ def pag_inicial(request):
             'apto_agendamento': apto_agendamento_str
         }
         return render(request, "pag_inicial.html", context)
+    
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')

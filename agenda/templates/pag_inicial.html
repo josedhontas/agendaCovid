@@ -179,12 +179,13 @@
 <body>
     <div id="marca">
         <img src="img/LogoJulius.png" alt="Agenda Covid">
-        <span> Agenda Covid</span>
     </div>
 
     <div id="container">
         <div id="esquerda">
             <span id="pessoal"> Informação pessoal </span>
+            <button id="novoLancamento" onclick="sair()">Sair</button>
+
             <div id="areaPessoal">
                 <div class="blocoLancamento">
                     <div class="descricaoLancamento">
@@ -213,6 +214,14 @@
             <span id="labelAgendamento"> Agendamento</span>
         </div>
     </div>
+
+
+    <script>
+        function sair() {
+            // Redireciona para a URL de logout
+            window.location.href = "{% url 'logout' %}";
+        }
+    </script>
     
 </body>
 </html>
