@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as authlogin, logout
 from validate_docbr import CPF
-from .models import CustomUser
+from .models import *
 from .manager import *
 from agenda.validacoes import validaData
 import xml.etree.ElementTree as ET
@@ -79,3 +79,14 @@ def pag_inicial(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+def agendamento(request):
+    if request.method == 'POST':
+        usuario = request.user
+        cnes = request.POST.get('cnes')
+        estabelecimento = Estabelecimento.objects.get(cnes='1234567890')
+        dia = request.POST.get('dia')
+        #hora = request.POST.get('hora')
+        agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento = timezone.now())
+        agendamento.save()
+        
