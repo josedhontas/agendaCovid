@@ -100,11 +100,11 @@ def visu_agendamento(request):
 
         
         context = {
-            'apto_agendamento': apto_agendamento_str,
             'data' : data,
             'hora': hora,
             'cnes': cnes,
-            'diaSemana': diaSemana
+            'diaSemana': diaSemana,
+            'estabelecimento': estabelecimento_nome
         }
         return render(request, "visu_agendamento.html", context)
     return redirect('/')
