@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://kit.fontawesome.com/e73b592546.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1>Agendamento</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    <select name="cnes" required class="formulario-select">
+                        <option value="Nenhum"> Nenhum</option>
+                        {% for estabelecimento  in dados_xml %}
+                        <option value="{{ estabelecimento.cnes }}">{{ estabelecimento.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fa-solid fa-calendar"></i>
+                        <input type="date" placeholder="Data de Nascimento" name="data" required>
+                    </div>
+                    
+                    <div class="input-field">
+                        <i class="fa-solid fa-calendar"></i>
+                        <select name="nome_horario" required class="form-select">
+                            <option value="Nenhum">Nenhum</option>
+                                <option value="{{ nome_horario }}">{{ nome_horario }}</option>
+                        </select>
+                    </div>
+                    
+                    
+                <div class="botoes">
+                    <button type="button" id="signinBtn" class="disable">Voltar</button>
+                    <button type="submit" id="signupBtn">Agendar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        signinBtn.onclick = function () {
+            signupBtn.classList.add("disable")
+            signinBtn.classList.remove("disable")
+        }
+
+        signupBtn.onclick = function () {
+            signinBtn.classList.add("disable")
+            signupBtn.classList.remove("disable")
+        }
+    </script>
+</body>
+
+</html>

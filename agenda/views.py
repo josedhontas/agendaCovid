@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login as authlogin, logout
 from validate_docbr import CPF
 from .models import *
 from .manager import *
-from agenda.validacoes import validaData
+from agenda.validacoes import *
 import xml.etree.ElementTree as ET
 
 def cadastro(request):
@@ -74,6 +74,8 @@ def pag_inicial(request):
             'apto_agendamento': apto_agendamento_str
         }
         return render(request, "pag_inicial.html", context)
+    return redirect('/')
+
     
 
 def logout_view(request):
@@ -81,12 +83,31 @@ def logout_view(request):
     return redirect('/')
 
 def agendamento(request):
+    if request.user.is_authenticated is False:
+        return redirect('/')
+    
     if request.method == 'POST':
         usuario = request.user
         cnes = request.POST.get('cnes')
-        estabelecimento = Estabelecimento.objects.get(cnes='1234567890')
+        print(cnes)
+        estabelecimento = Estabelecimento.objects.get(cnes=cnes)
         dia = request.POST.get('dia')
+        print(estabelecimento)
         #hora = request.POST.get('hora')
-        agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento = timezone.now())
+        agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento=timezone.now())
         agendamento.save()
-        
+
+    data_nascimento = request.user.data_nascimento
+    tree = ET.parse('agenda/dados/estabelecimentos_pr.xml')
+    dados_xml = [{'nome': estabelecimento.find('no_fantasia').text, 'cnes': estabelecimento.find('co_cnes').text} for estabelecimento in tree.getroot().findall('.//estabelecimento')]
+    context = {'dados_xml': dados_xml}
+
+    print(dados_xml)
+    
+    context2 = {
+        'nome_horario': regraHorario(data_nascimento),
+    }
+
+    context = {**context, **context2}
+
+    return render(request, "agendamento.html", context)
