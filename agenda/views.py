@@ -59,19 +59,36 @@ def login(request):
 
 def pag_inicial(request):
     if request.user.is_authenticated:
+        # dados do usuario aqui
         nome = request.user.nome_completo
         cpf = request.user.cpf
-        data_nascimento = request.user.data_nascimento
+        data_nascimento = converterData(request.user.data_nascimento)
         apto_agendamento = request.user.apto_agendamento
-
         apto_agendamento_str = "Sim" if apto_agendamento else "Não"
+
+        #aqui comeca os dados do agendamento e estabelecimento
+        agendamento = Agendamento.objects.filter(usuario=cpf).first()
+        cnes = agendamento.estabelecimento.cnes
+        estabelecimento = Estabelecimento.objects.filter(cnes = cnes).first()
+        estabelecimento_nome = estabelecimento.nome
+        diaSemana = obterDiaSemana(agendamento.data_agendamento)
+        data = converterData(agendamento.data_agendamento)
+        hora = converterHora(agendamento.data_agendamento)
+        print(diaSemana)
+        
+
 
         
         context = {
-            'cpf' : str(cpf),
-            'nome': str(nome),
-            'data_nascimento': str(data_nascimento),
-            'apto_agendamento': apto_agendamento_str
+            'cpf' : cpf,
+            'nome': nome,
+            'data_nascimento': data_nascimento,
+            'apto_agendamento': apto_agendamento_str,
+            'data' : data,
+            'hora': hora,
+            'cnes': cnes,
+            'estabelecimento': estabelecimento_nome,
+            'diaSemana': diaSemana
         }
         return render(request, "pag_inicial.html", context)
     return redirect('/')
@@ -94,6 +111,7 @@ def agendamento(request):
         dia = request.POST.get('dia')
         print(estabelecimento)
         #hora = request.POST.get('hora')
+        print(timezone.now())
         agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento=timezone.now())
         agendamento.save()
 
