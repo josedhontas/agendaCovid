@@ -93,7 +93,37 @@ def pag_inicial(request):
         return render(request, "pag_inicial.html", context)
     return redirect('/')
 
-    
+def visu_agendamento(request):
+    if request.user.is_authenticated:
+        # dados do usuario aqui
+        cpf = request.user.cpf
+        apto_agendamento = request.user.apto_agendamento
+        apto_agendamento_str = "Sim" if apto_agendamento else "Não"
+
+        #aqui comeca os dados do agendamento e estabelecimento
+        agendamento = Agendamento.objects.filter(usuario=cpf).first()
+        cnes = agendamento.estabelecimento.cnes
+        estabelecimento = Estabelecimento.objects.filter(cnes = cnes).first()
+        estabelecimento_nome = estabelecimento.nome
+        diaSemana = obterDiaSemana(agendamento.data_agendamento)
+        data = converterData(agendamento.data_agendamento)
+        hora = converterHora(agendamento.data_agendamento)
+        print(diaSemana)
+        
+
+
+        
+        context = {
+            'apto_agendamento': apto_agendamento_str,
+            'data' : data,
+            'hora': hora,
+            'diaSemana': diaSemana,
+            'estabelecimento': estabelecimento_nome,
+            'cnes': cnes,
+        }
+        return render(request, "visu_agendamento.html", context)
+    return redirect('/')
+
 
 def logout_view(request):
     logout(request)
@@ -119,11 +149,10 @@ def agendamento(request):
     tree = ET.parse('agenda/dados/estabelecimentos_pr.xml')
     dados_xml = [{'nome': estabelecimento.find('no_fantasia').text, 'cnes': estabelecimento.find('co_cnes').text} for estabelecimento in tree.getroot().findall('.//estabelecimento')]
     context = {'dados_xml': dados_xml}
-
-    print(dados_xml)
+    nome_horario = regraHorario(str(data_nascimento))
     
     context2 = {
-        'nome_horario': regraHorario(data_nascimento),
+        'nome_horario': nome_horario,
     }
 
     context = {**context, **context2}

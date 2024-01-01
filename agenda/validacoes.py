@@ -12,9 +12,8 @@ def validaData(data):
     else:
         return False
 
-def regraHorario(data):
-    dias_ano = 365.2425
-    idade = int((datetime.date.today() - data).days / dias_ano)
+def regraHorario(data_nascimento):
+    idade = calcular_idade(data_nascimento)
     horario = None
     if idade >= 18 and idade <= 29:
         horario = "13 horas"
@@ -28,6 +27,18 @@ def regraHorario(data):
         horario = "17 horas"
     
     return horario
+
+
+def calcular_idade(data_nascimento):
+    data_nascimento = datetime.strptime(data_nascimento, '%Y-%m-%d')
+    
+    data_atual = datetime.now()
+    
+    diferenca = data_atual - data_nascimento
+    
+    idade = diferenca.days // 365
+    
+    return idade
 
 def obterDiaSemana(data):
     dias_semana = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"]

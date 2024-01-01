@@ -200,6 +200,7 @@
         signupBtn.onclick = function () {
             signinBtn.classList.add("disable")
             signupBtn.classList.remove("disable")
+            window.location.href = "{% url 'agendamento' %}";
         }
     </script>
 </body>
