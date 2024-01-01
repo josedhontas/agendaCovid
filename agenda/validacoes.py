@@ -44,9 +44,14 @@ def obterDiaSemana(data):
     dias_semana = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"]
     return dias_semana[data.weekday()]
 
-def converterData(data_objeto):
+def Data(data_objeto):
     data_string_formatada = data_objeto.strftime("%Y-%m-%d")
     return data_string_formatada
+
+def converterData(data_objeto):
+    data_string_formatada = data_objeto.strftime("%d/%m/%Y")
+    return data_string_formatada
+
 
 def converterHora(hora_objeto):
     hora_string_formatada = hora_objeto.strftime("%H:%M")

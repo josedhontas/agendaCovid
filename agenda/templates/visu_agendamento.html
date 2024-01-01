@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://kit.fontawesome.com/e73b592546.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>Document</title>
+
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box;
+    }
+    
+    .container2{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(rgba(0, 0, 50, 0.8), rgba(0, 0, 50, 0.8)), url(../img/background.png);
+        background-position: center;
+        background-size: cover;
+        position: relative;
+    }
+    
+    #esquerda{
+        width: 50%;
+    }
+    
+    #direita{
+        width: 50%;
+    }
+    
+    #meio{
+        display: flex;
+    }
+    
+    
+    .formulario{
+        width: 90%;
+        max-width: 450px;
+        position: absolute;
+        border-radius: 10px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 50px 30px 70px;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .formulario h1{
+        font-size: 30px;
+        margin-bottom: 60px;
+        color: #3c00a0;
+        position: relative;
+    }
+    
+    .formulario h1::after{
+        content: '';
+        width: 30px;
+        height: 4px;
+        border-radius: 3px;
+        background: #3c00a0;
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .campo-entrada{
+        background: #eaeaea;
+        margin: 15px 10px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    
+    }
+    
+    #input2{
+        background: #eaeaea;
+        margin: 15px 0;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        width: 50%;
+    
+    }
+    
+    input{
+        width: 100%;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        padding: 18px 15px;
+        
+    }
+    
+    .campo-entrada i{
+        margin-left: 15px;
+        color: #999
+    }
+    
+    form p{
+        text-align: left;
+        font-size: 13px;
+    }
+    
+    form p a{
+        text-decoration: none;
+        color: #3c00a0;
+    }
+    
+    .botoes{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .botoes button{
+        flex-basis: 48%;
+        background: #3c00a0;
+        color: #fff;
+        height: 40px;
+        border-radius: 20px;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        transition: 1s;
+    }
+    
+    .grupo-entrada{
+        height: 250px;
+    }
+    
+    
+    .botoes button.disable{
+        background: #eaeaea;
+        color: #555;
+    
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container2">
+        <div class="formulario">
+            <h1>Pag Inicial</h1>
+                <div class="grupo-entrada">
+                    <div class="campo-entrada">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Nome: {{nome}}" value="{{data}} às {{hora}}" readonly>
+                    </div>
+                    <div id="meio">
+                        <div class="esquerda">
+                            <div class="campo-entrada">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="number" placeholder="CPF (Números)" value="{{cpf}}" readonly>
+                            </div>
+                        </div>
+                        <div class="direita">
+
+                        <div class="campo-entrada">
+                            <i class="fa-solid fa-calendar"></i>
+                            <input type="date" placeholder="Data de Nascimento" value="{{data_nascimento}}" readonly>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="grupo-entrada">
+                        <div class="campo-entrada">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="Nome: {{nome}}" value="{{apto_agendamento}}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="botoes">
+                    <button type="button" id="signinBtn" class="disable">Sair</button>
+                    <button type="submit" id="signupBtn">Agendamento</button>
+                </div>
+        </div>
+    </div>
+
+
+    <script>
+        signinBtn.onclick = function () {
+            signupBtn.classList.add("disable")
+            signinBtn.classList.remove("disable")
+            window.location.href = "{% url 'logout' %}";
+        }
+
+        signupBtn.onclick = function () {
+            signinBtn.classList.add("disable")
+            signupBtn.classList.remove("disable")
+            window.location.href = "{% url 'agendamento' %}";
+        }
+    </script>
+</body>
+
+</html>
