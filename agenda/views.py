@@ -80,6 +80,9 @@ def pag_inicial(request):
 
 
 def visu_agendamento(request):
+    if request.user.is_authenticated is False:
+        return redirect('/')
+    
     if request.user.is_authenticated:
         # dados do usuario aqui
         cpf = request.user.cpf

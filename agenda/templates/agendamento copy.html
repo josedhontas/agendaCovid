@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://kit.fontawesome.com/e73b592546.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .container2 {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 50, 0.8), rgba(0, 0, 50, 0.8)), url(../img/background.png);
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+
+        #esquerda {
+            width: 50%;
+        }
+
+        #direita {
+            width: 50%;
+        }
+
+        #meio {
+            display: flex;
+        }
+
+
+        .formulario {
+            width: 90%;
+            max-width: 450px;
+            position: absolute;
+            border-radius: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 50px 30px 70px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .formulario h1 {
+            font-size: 30px;
+            margin-bottom: 60px;
+            color: #3c00a0;
+            position: relative;
+        }
+
+        .formulario h1::after {
+            content: '';
+            width: 30px;
+            height: 4px;
+            border-radius: 3px;
+            background: #3c00a0;
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .campo-entrada {
+            background: #eaeaea;
+            margin: 10px 3px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+
+        }
+
+        #input2 {
+            background: #eaeaea;
+            margin: 15px 0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            width: 50%;
+
+        }
+
+        input {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            outline: 0;
+            padding: 18px 15px;
+
+        }
+
+        .campo-entrada i {
+            margin-left: 15px;
+            color: #999
+        }
+
+        formulario p {
+            text-align: left;
+            font-size: 13px;
+        }
+
+        formulario p a {
+            text-decoration: none;
+            color: #3c00a0;
+        }
+
+        .botoes {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .botoes button {
+            flex-basis: 48%;
+            background: #3c00a0;
+            color: #fff;
+            height: 40px;
+            border-radius: 20px;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+            transition: 1s;
+        }
+
+        .grupo-entrada {
+            height: 380px;
+        }
+
+
+        .botoes button.disable {
+            background: #eaeaea;
+            color: #555;
+
+        }
+
+        select{
+            background: #eaeaea;
+            margin: 10px 6px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            border: 0;
+            outline: none;
+        }
+
+        .all-divs {
+            text-align: justify;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .campo-entrada .formulario-select {
+            max-width: 100%;
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container2">
+        <div class="formulario">
+            <h1>Agendamento</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="grupo-entrada">
+                    <div class="compo-entrada">
+                        <select name="cnes" required class="formulario-select">
+                            <option value="Nenhum"> Nenhum</option>
+                            {% for estabelecimento in dados_xml %}
+                            <option value="{{ estabelecimento.cnes }}">{{ estabelecimento.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="compo-entrada">
+                        <i class="fa-solid fa-calendar"></i>
+                        <input type="date" placeholder="Data de Nascimento" name="data" required>
+                    </div>
+
+                    <div class="compo-entrada">
+                        <i class="fa-solid fa-calendar"></i>
+                        <select name="nome_horario" required class="form-select">
+                            <option value="Nenhum">Nenhum</option>
+                            <option value="{{ nome_horario }}">{{ nome_horario }}</option>
+                        </select>
+                    </div>
+
+                    <div class="botoes">
+                        <button type="button" id="signinBtn" class="disable">Voltar</button>
+                        <button type="submit" id="signupBtn">Agendar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        signinBtn.onclick = function () {
+            signupBtn.classList.add("disable")
+            signinBtn.classList.remove("disable")
+            window.location.href = "{% url 'pag_inicial' %}";
+
+        }
+
+        signupBtn.onclick = function () {
+            signinBtn.classList.add("disable")
+            signupBtn.classList.remove("disable")
+
+        }
+    </script>
+</body>
+
+</html>
