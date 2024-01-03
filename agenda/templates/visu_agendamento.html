@@ -52,7 +52,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background: white;
-        padding: 50px 30px 70px;
+        padding: 50px 20px 30px;
         text-align: center;
         align-items: center;
     }
@@ -148,7 +148,7 @@
     }
     
     .grupo-entrada{
-        height: 300px;
+        height: 420px;
     }
     
     
@@ -159,11 +159,32 @@
     }
 
     label{
-        margin: 15px 10px;
+        margin: 0px 10px;
         display: flex;
         align-items: center;
 
     }
+
+    @media screen and (max-width: 768px) {
+        .formulario {
+            width: 100%;
+            max-width: 100%;
+            padding: 20px;
+        }
+
+        .campo-entrada,
+        #input2 {
+            width: 100%;
+        }
+
+        .botoes button {
+            flex-basis: 100%;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+    }
+
     </style>
 </head>
 
@@ -183,6 +204,14 @@
                     <div class="campo-entrada">
                         <i class="fa-solid fa-user"></i>
                         <input type="text" placeholder="Nome: {{nome}}" value="{{diaSemana}}" readonly>
+                    </div>
+
+                    
+                    <label>Atrasado:</label>
+
+                    <div class="campo-entrada">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Nome: {{nome}}" value="{{atrasado}}" readonly>
                     </div>
                     <label>Estabelecimento:</label>
 
