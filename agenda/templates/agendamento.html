@@ -189,6 +189,7 @@ label{
                 <div class="grupo-entrada">
                     <label>Estabelecimento:</label>
                     <div class="campo-entrada">
+                        <i class="fa-solid fa-building"></i>
                         <select name="cnes" required class="formulario-select">
                             <option value="Nenhum"> Nenhum</option>
                             {% for estabelecimento in dados_xml %}
@@ -198,11 +199,12 @@ label{
                     </div>
                     <label>Data:</label>
                       <div class="campo-entrada">
-                          <i class="fa-solid fa-calendar"></i>
+                        <i class="fa-solid fa-calendar"></i>
                           <input type="date" placeholder="Data de Nascimento" name="dia" required>
                       </div>
                       <label>Horário:</label>
                   <div class="campo-entrada">
+                    <i class="fa-solid fa-clock"></i>
                     <select name="horario" required class="formulario-select">
                         <option value="Nenhum">Nenhum</option>
                         <option value="{{ horario }}">{{ nome_horario }}</option>
