@@ -199,13 +199,13 @@ label{
                     <label>Data:</label>
                       <div class="campo-entrada">
                           <i class="fa-solid fa-calendar"></i>
-                          <input type="date" placeholder="Data de Nascimento" name="data_nascimento" required>
+                          <input type="date" placeholder="Data de Nascimento" name="dia" required>
                       </div>
                       <label>Horário:</label>
                   <div class="campo-entrada">
-                    <select name="nome_horario" required class="formulario-select">
+                    <select name="horario" required class="formulario-select">
                         <option value="Nenhum">Nenhum</option>
-                        <option value="{{ nome_horario }}">{{ nome_horario }}</option>
+                        <option value="{{ horario }}">{{ nome_horario }}</option>
                     </select>
                 </div>
 
@@ -253,13 +253,18 @@ label{
         signinBtn.onclick = function () {
             signupBtn.classList.add("disable")
             signinBtn.classList.remove("disable")
-            window.location.href = "{% url 'pag_inicial' %}";
+            setTimeout(function() {
+                window.location.href = "{% url 'pag_inicial' %}";
+            }, 500);
 
         }
 
         signupBtn.onclick = function () {
             signinBtn.classList.add("disable")
             signupBtn.classList.remove("disable")
+            setTimeout(function() {
+                window.location.href =  "{% url 'visu_agendamento' %}";
+            }, 1000);
 
         }
     </script>

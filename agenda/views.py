@@ -90,14 +90,16 @@ def visu_agendamento(request):
         apto_agendamento_str = "Sim" if apto_agendamento else "Não"
 
         #aqui comeca os dados do agendamento e estabelecimento
-        agendamento = Agendamento.objects.filter(usuario=cpf).first()
+        agendamento = Agendamento.objects.filter(usuario=cpf).last()
         cnes = agendamento.estabelecimento.cnes
         estabelecimento = Estabelecimento.objects.filter(cnes = cnes).first()
         estabelecimento_nome = estabelecimento.nome
         diaSemana = obterDiaSemana(agendamento.data_agendamento)
         data = converterData(agendamento.data_agendamento)
         hora = converterHora(agendamento.data_agendamento)
-        print(diaSemana)
+        atrasado = Atrasado(agendamento.data_agendamento)
+        print(atrasado)
+        #print(diaSemana)
         
 
 
@@ -107,7 +109,8 @@ def visu_agendamento(request):
             'hora': hora,
             'cnes': cnes,
             'diaSemana': diaSemana,
-            'estabelecimento': estabelecimento_nome
+            'estabelecimento': estabelecimento_nome,
+            'atrasado': atrasado
         }
         return render(request, "visu_agendamento.html", context)
     return redirect('/')
@@ -124,13 +127,16 @@ def agendamento(request):
     if request.method == 'POST':
         usuario = request.user
         cnes = request.POST.get('cnes')
-        print(cnes)
         estabelecimento = Estabelecimento.objects.get(cnes=cnes)
         dia = request.POST.get('dia')
+        horario = request.POST.get('horario')
+        print(horario)
+
+        print(dia)
         print(estabelecimento)
-        #hora = request.POST.get('hora')
-        print(timezone.now())
-        agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento=timezone.now())
+
+        data_hora_agendamento = datetime.strptime(f"{dia} {horario}", "%Y-%m-%d %H:%M")
+        agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento=data_hora_agendamento)
         messages.success(request, 'Agendamento realizado com sucesso!')
 
         agendamento.save()
@@ -141,9 +147,11 @@ def agendamento(request):
     tree = ET.parse('agenda/dados/estabelecimentos_pr.xml')
     dados_xml = [{'nome': estabelecimento.find('no_fantasia').text, 'cnes': estabelecimento.find('co_cnes').text} for estabelecimento in tree.getroot().findall('.//estabelecimento')]
     context = {'dados_xml': dados_xml}
-    nome_horario = regraHorario(str(data_nascimento))
+    horario = regraHorario(str(data_nascimento))
+    nome_horario = horario + " horas"
     
     context2 = {
+        'horario': horario,
         'nome_horario': nome_horario,
     }
 
