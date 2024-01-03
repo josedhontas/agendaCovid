@@ -98,10 +98,12 @@ def visu_agendamento(request):
         data = converterData(agendamento.data_agendamento)
         hora = converterHora(agendamento.data_agendamento)
         atrasado = Atrasado(agendamento.data_agendamento)
-        print(atrasado)
-        #print(diaSemana)
-        
+        atrasado_str = "Sim" if atrasado else "Não"
 
+
+
+        agendamento.finalizado = atrasado
+        agendamento.save()
 
         
         context = {
@@ -110,7 +112,7 @@ def visu_agendamento(request):
             'cnes': cnes,
             'diaSemana': diaSemana,
             'estabelecimento': estabelecimento_nome,
-            'atrasado': atrasado
+            'atrasado': atrasado_str
         }
         return render(request, "visu_agendamento.html", context)
     return redirect('/')

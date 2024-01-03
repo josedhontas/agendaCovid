@@ -68,7 +68,7 @@ def Atrasado(data):
     data_atual = datetime.now(fuso_horario_brasileiro)
 
     if data_fornecida < data_atual:
-        return "Sim"
+        return True
     else:
-        return "Não"
+        return False
 
