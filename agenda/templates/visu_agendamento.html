@@ -45,7 +45,7 @@
     
     .formulario{
         width: 90%;
-        max-width: 450px;
+        max-width: 35%;
         position: absolute;
         border-radius: 10px;
         top: 50%;
@@ -148,7 +148,7 @@
     }
     
     .grupo-entrada{
-        height: 250px;
+        height: 300px;
     }
     
     
@@ -157,23 +157,34 @@
         color: #555;
     
     }
+
+    label{
+        margin: 15px 10px;
+        display: flex;
+        align-items: center;
+
+    }
     </style>
 </head>
 
 <body>
     <div class="container2">
         <div class="formulario">
-            <h1>Pag Inicial</h1>
+            <h1>Listagem agendamento</h1>
+            <label>Data e horário:</label>
                 <div class="grupo-entrada">
                     <div class="campo-entrada">
                         <i class="fa-solid fa-user"></i>
                         <input type="text" placeholder="Nome: {{nome}}" value="{{data}} às {{hora}}" readonly>
                     </div>
 
+                    <label>Dia da semana:</label>
+
                     <div class="campo-entrada">
                         <i class="fa-solid fa-user"></i>
                         <input type="text" placeholder="Nome: {{nome}}" value="{{diaSemana}}" readonly>
                     </div>
+                    <label>Estabelecimento:</label>
 
                     <div class="campo-entrada">
                         <i class="fa-solid fa-user"></i>
@@ -193,7 +204,7 @@
         signinBtn.onclick = function () {
             signupBtn.classList.add("disable")
             signinBtn.classList.remove("disable")
-            window.location.href = "{% url 'logout' %}";
+            window.location.href = "{% url 'pag_inicial' %}";
         }
 
         signupBtn.onclick = function () {

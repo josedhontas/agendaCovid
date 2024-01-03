@@ -131,7 +131,11 @@ def agendamento(request):
         #hora = request.POST.get('hora')
         print(timezone.now())
         agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento=timezone.now())
+        messages.success(request, 'Agendamento realizado com sucesso!')
+
         agendamento.save()
+        return redirect('visu_agendamento')
+
 
     data_nascimento = request.user.data_nascimento
     tree = ET.parse('agenda/dados/estabelecimentos_pr.xml')

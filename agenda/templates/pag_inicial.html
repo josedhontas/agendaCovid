@@ -138,7 +138,7 @@
     }
     
     .grupo-entrada{
-        height: 250px;
+        height: 330px;
     }
     
     
@@ -147,6 +147,13 @@
         color: #555;
     
     }
+
+    label{
+        margin: 15px 10px;
+        display: flex;
+        align-items: center;
+
+    }
     </style>
 </head>
 
@@ -154,11 +161,14 @@
     <div class="container2">
         <div class="formulario">
             <h1>Pag Inicial</h1>
+            <label>Nome:</label>
                 <div class="grupo-entrada">
                     <div class="campo-entrada">
                         <i class="fa-solid fa-user"></i>
                         <input type="text" placeholder="Nome: {{nome}}" value="{{nome}}" readonly>
                     </div>
+                    <label>Data de Nascimento:</label>
+
                     <div id="meio">
                         <div class="esquerda">
                             <div class="campo-entrada">
@@ -176,6 +186,8 @@
                     </div>
 
                     <div class="grupo-entrada">
+                        <label>Apto para agendamento:</label>
+
                         <div class="campo-entrada">
                             <i class="fa-solid fa-user"></i>
                             <input type="text" placeholder="Nome: {{nome}}" value="{{apto_agendamento}}" readonly>
@@ -184,7 +196,7 @@
                 </div>
                 <div class="botoes">
                     <button type="button" id="signinBtn" class="disable">Sair</button>
-                    <button type="submit" id="signupBtn">Agendamento</button>
+                    <button type="submit" id="signupBtn">Novo agendamento</button>
                 </div>
         </div>
     </div>
