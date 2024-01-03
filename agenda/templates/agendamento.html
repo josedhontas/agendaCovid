@@ -171,6 +171,12 @@
     max-width: 100%; 
     width: 100%;
 }
+
+label{
+    margin: 15px 10px;
+    display: flex;
+    align-items: center;
+}
     </style>
 </head>
 
@@ -181,6 +187,7 @@
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="grupo-entrada">
+                    <label>Estabelecimento:</label>
                     <div class="campo-entrada">
                         <select name="cnes" required class="formulario-select">
                             <option value="Nenhum"> Nenhum</option>
@@ -189,10 +196,12 @@
                             {% endfor %}
                         </select>
                     </div>
+                    <label>Data:</label>
                       <div class="campo-entrada">
                           <i class="fa-solid fa-calendar"></i>
                           <input type="date" placeholder="Data de Nascimento" name="data_nascimento" required>
                       </div>
+                      <label>Horário:</label>
                   <div class="campo-entrada">
                     <select name="nome_horario" required class="formulario-select">
                         <option value="Nenhum">Nenhum</option>
