@@ -66,6 +66,15 @@ def pag_inicial(request):
         data_nascimento = Data(request.user.data_nascimento)
         apto_agendamento = request.user.apto_agendamento
         apto_agendamento_str = "Sim" if apto_agendamento else "Não"
+        agendamento_usuario = Agendamento.objects.filter(Q(usuario=cpf) & Q(finalizado=False))
+
+        if(len(agendamento_usuario) > 0):
+            botao = 'Listar agendamento'
+            caminho = "1"
+        
+        else:
+            botao = 'Novo agendamento'
+            caminho = "2"
 
         
         context = {
@@ -73,6 +82,8 @@ def pag_inicial(request):
             'nome': nome,
             'data_nascimento': data_nascimento,
             'apto_agendamento': apto_agendamento_str,
+            'botao': botao,
+            'caminho': caminho
         }
         return render(request, "pag_inicial.html", context)
     return redirect('/')

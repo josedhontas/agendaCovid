@@ -195,7 +195,7 @@
                 </div>
                 <div class="botoes">
                     <button type="button" id="signinBtn" class="disable">Sair</button>
-                    <button type="submit" id="signupBtn">Novo agendamento</button>
+                    <button type="submit" id="signupBtn">{{botao}}</button>
                 </div>
         </div>
     </div>
@@ -211,7 +211,12 @@
         signupBtn.onclick = function () {
             signinBtn.classList.add("disable")
             signupBtn.classList.remove("disable")
-            window.location.href = "{% url 'agendamento' %}";
+            if("{{caminho}}" == 1){
+                window.location.href = "{% url 'visu_agendamento' %}";
+            }
+            else{
+                window.location.href = "{% url 'agendamento' %}";
+            }
         }
     </script>
 </body>
