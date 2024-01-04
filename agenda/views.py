@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as authlogin, logout
 from validate_docbr import CPF
+from django.db.models import Q
 from .models import *
 from .manager import *
 from agenda.validacoes import *
@@ -23,8 +24,8 @@ def cadastro(request):
             messages.error(request, 'CPF Inválido!')
         elif CustomUser.objects.filter(cpf=cpf).exists():
             messages.error(request, 'CPF já cadastrado')
-        elif not validaData(data_nascimento):
-            messages.error(request, 'Data inválida')
+        #elif not validaData(data_nascimento):
+        #    messages.error(request, 'Data inválida')
         elif senha1 != senha2:
             messages.error(request, 'As senhas não coincidem')
         elif teve_covid:
@@ -132,17 +133,24 @@ def agendamento(request):
         estabelecimento = Estabelecimento.objects.get(cnes=cnes)
         dia = request.POST.get('dia')
         horario = request.POST.get('horario')
-        print(horario)
-
-        print(dia)
-        print(estabelecimento)
 
         data_hora_agendamento = datetime.strptime(f"{dia} {horario}", "%Y-%m-%d %H:%M")
-        agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento=data_hora_agendamento)
-        messages.success(request, 'Agendamento realizado com sucesso!')
+        data_hora_agendamento = timezone.make_aware(data_hora_agendamento, timezone.utc)
+        agendamentos_usuario = Agendamento.objects.filter(Q(usuario=usuario.cpf) & Q(finalizado=False))
+        #agendamentos_estabelecimento = Agendamento.objects.filter(Q(data_agendamento=data_hora_agendamento) & Q(finalizado=False))
 
-        agendamento.save()
-        return redirect('visu_agendamento')
+        #print(len(agendamentos_estabelecimento))
+        if(len(agendamentos_usuario) > 1):
+            messages.error(request, 'Agentamento ja feito')
+        
+        if(diaSemanaInvalido(data_hora_agendamento)):
+            messages.error(request, 'Selecione dias entre quarta e sábado')
+        else:
+            agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento=data_hora_agendamento)
+            messages.success(request, 'Agendamento realizado com sucesso!')
+
+            agendamento.save()
+            return redirect('visu_agendamento')
 
 
     data_nascimento = request.user.data_nascimento

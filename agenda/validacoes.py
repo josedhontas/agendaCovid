@@ -71,4 +71,19 @@ def Atrasado(data):
         return True
     else:
         return False
+    
+def diaSemanaInvalido(data):
+    if Atrasado(data):
+        return True
+    dia_semana = obterDiaSemana(data)
+    dias_validos = ["Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]
+    if dia_semana not in dias_validos:
+        return True
+    else:
+        return False
+
+
+    
+
+
 
