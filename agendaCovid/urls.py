@@ -26,6 +26,9 @@ urlpatterns = [
     path('logout', logout_view, name="logout"),
     path('agendamento', agendamento, name="agendamento"),
     path('visu_agendamento', visu_agendamento, name="visu_agendamento"),
+    path('telaAdmin', telaAdmin, name="telaAdmin"),
+
+
 
 
 

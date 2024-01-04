@@ -187,3 +187,22 @@ def agendamento(request):
     context = {**context, **context2}
 
     return render(request, "agendamento.html", context)
+
+from django.shortcuts import render
+
+def telaAdmin(request):
+
+    estabelecimentos = Estabelecimento.objects.all()
+
+    products = [
+        {
+            'category': estabelecimento.nome,
+            'num_of_products': len(Agendamento.objects.filter(Q(estabelecimento=estabelecimento.cnes) & Q(finalizado=False)))
+        }
+        for estabelecimento in estabelecimentos
+    ]
+
+    dados = {'products': products}
+
+
+    return render(request, 'telaAdmin.html', context=dados)
