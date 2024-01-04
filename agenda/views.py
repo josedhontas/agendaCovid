@@ -136,21 +136,29 @@ def agendamento(request):
 
         data_hora_agendamento = datetime.strptime(f"{dia} {horario}", "%Y-%m-%d %H:%M")
         data_hora_agendamento = timezone.make_aware(data_hora_agendamento, timezone.utc)
-        agendamentos_usuario = Agendamento.objects.filter(Q(usuario=usuario.cpf) & Q(finalizado=False))
+        agendamento_usuario = Agendamento.objects.filter(Q(usuario=usuario.cpf) & Q(finalizado=False))
+
+        estabelecimento_cheio = Agendamento.objects.filter(Q(data_agendamento=data_hora_agendamento) & Q(finalizado=False) & Q(estabelecimento=cnes))
+        #print(agendamento_usuario.data_agendamento)
+        #print("------")
+        #print(data_hora_agendamento)
         #agendamentos_estabelecimento = Agendamento.objects.filter(Q(data_agendamento=data_hora_agendamento) & Q(finalizado=False))
 
         #print(len(agendamentos_estabelecimento))
-        if(len(agendamentos_usuario) > 1):
-            messages.error(request, 'Agentamento ja feito')
-        
-        if(diaSemanaInvalido(data_hora_agendamento)):
+        if Atrasado(data_hora_agendamento):
+            messages.error(request, 'Data inválida')
+        elif len(agendamento_usuario) >= 1:
+            messages.error(request, 'Agendamento já feito')
+        elif diaSemanaInvalido(data_hora_agendamento):
             messages.error(request, 'Selecione dias entre quarta e sábado')
+        elif len(estabelecimento_cheio) >= 5:
+            messages.error(request, 'Estabelecimento sem vagas para o horário')
         else:
             agendamento = Agendamento(usuario=usuario, estabelecimento=estabelecimento,  data_agendamento=data_hora_agendamento)
             messages.success(request, 'Agendamento realizado com sucesso!')
-
             agendamento.save()
             return redirect('visu_agendamento')
+
 
 
     data_nascimento = request.user.data_nascimento
