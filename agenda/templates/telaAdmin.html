@@ -59,9 +59,11 @@
         
         #header{
             background-image: linear-gradient(to right, #4d13d1, #59abe3);
-            padding: 5px 10px 5px 30px;
+            padding: 15px 0px 15px 0px;
             /* cima, direita, baixo, esquerda*/
-            color: white
+            color: white;
+            text-align: center; 
+
         }
         
         #boasVindas {
@@ -177,8 +179,16 @@
         #btnSair {
             position: absolute;
             transform: translateY(-50%);
-            top: 100px; 
+            top: 30px; 
             right: 10px; 
+        }
+
+
+        #campoPesquisa {
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            width: 50%;
         }
         
         
@@ -188,12 +198,12 @@
     <div id="marca">
         <img src="img/LogoJulius.png" alt="Julius">
         <span> ADMIN</span>
+        <button id="btnSair" class="btn btn-danger">Sair</button>
+
     </div>
 
     <div id="header">
-        <span id="boasVindas"> Painel administrador</span>
-        <button id="btnSair" class="btn btn-danger">Sair</button>
-
+        <input type="text" id="campoPesquisa" placeholder="Pesquisar..." />
     </div>
 
     <div id="container">
@@ -253,6 +263,10 @@
                         }
                     }
                 }
+            });
+
+            document.getElementById('btnSair').addEventListener('click', function() {
+                window.location.href = "{% url 'logout' %}";
             });
         </script>
     </div>
