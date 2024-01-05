@@ -7,6 +7,8 @@ from .models import *
 from .manager import *
 from agenda.validacoes import *
 import xml.etree.ElementTree as ET
+from django.contrib.auth.decorators import user_passes_test
+
 
 def cadastro(request):
     if request.method == 'POST':
@@ -53,7 +55,10 @@ def login(request):
         user = authenticate(request, cpf=cpf, password=senha)
         if user is not None:
             authlogin(request, user)
-            return redirect('pag_inicial')
+            if user.is_staff:
+                return redirect('telaAdmin')
+            else:
+                return redirect('pag_inicial')        
         else:
             messages.error(request, 'CPF ou Senha Incorreta!')
     return render(request, "login.html")
@@ -190,6 +195,8 @@ def agendamento(request):
 
 from django.shortcuts import render
 
+
+@user_passes_test(lambda u: u.is_staff)
 def telaAdmin(request):
 
     estabelecimentos = Estabelecimento.objects.all()
