@@ -219,7 +219,7 @@ def telaAdmin(request):
 def graficoBarra(request):
     estabelecimentos = Estabelecimento.objects.all()
 
-    products = [
+    estabelecimentos = [
         {
             'category': estabelecimento.nome,
             'num_of_products': len(Agendamento.objects.filter(Q(estabelecimento=estabelecimento.cnes) & Q(finalizado=False)))
@@ -227,7 +227,7 @@ def graficoBarra(request):
         for estabelecimento in estabelecimentos
     ]
 
-    dados = {'products': products}
+    dados = {'estabelecimentos': estabelecimentos}
     return render(request, 'graficoBarra.html', context=dados)
 
 
