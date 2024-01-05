@@ -201,6 +201,24 @@ def telaAdmin(request):
 
     estabelecimentos = Estabelecimento.objects.all()
 
+    info = [
+        {
+            'nome': estabelecimento.nome,
+            'cnes': estabelecimento.cnes
+        }
+        for estabelecimento in estabelecimentos
+    ]
+
+    dados = {'info': info}
+
+
+    return render(request, 'telaAdmin.html', context=dados)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def graficoBarra(request):
+    estabelecimentos = Estabelecimento.objects.all()
+
     products = [
         {
             'category': estabelecimento.nome,
@@ -210,6 +228,6 @@ def telaAdmin(request):
     ]
 
     dados = {'products': products}
+    return render(request, 'graficoBarra.html', context=dados)
 
 
-    return render(request, 'telaAdmin.html', context=dados)

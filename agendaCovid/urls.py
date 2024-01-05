@@ -27,6 +27,8 @@ urlpatterns = [
     path('agendamento', agendamento, name="agendamento"),
     path('visu_agendamento', visu_agendamento, name="visu_agendamento"),
     path('telaAdmin', telaAdmin, name="telaAdmin"),
+    path('graficoBarra', graficoBarra, name="graficoBarra"),
+
 
 
 
