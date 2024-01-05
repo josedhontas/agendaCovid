@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Painel - Minha Aplicação{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <canvas id="myChart2" width="400" height="400"></canvas>
+        <script>
+            function getRainbowColor(index, total) {
+                var hue = (index / total) * 360;
+                return 'hsl(' + hue + ', 70%, 60%)';
+            }
+
+            var ctx = document.getElementById('myChart2').getContext('2d');
+            var estabelecimentosData = [
+                {% for estabelecimento in estabelecimentos %}
+                    {
+                        nome: '{{ estabelecimento.nome | slice:":10" }}',
+                        agendamentos: {{ estabelecimento.agendamentos }},
+                        color: getRainbowColor({{ forloop.counter0 }}, {{ estabelecimentos|length }})
+                    },
+                {% endfor %}
+            ];
+
+            var myChart2 = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: estabelecimentosData.map(function(estabelecimento) {
+                        return estabelecimento.nome;
+                    }),
+                    datasets: [{
+                        label: 'Número de agendamentos',
+                        data: estabelecimentosData.map(function(estabelecimento) {
+                            return estabelecimento.agendamentos;
+                        }),
+                        backgroundColor: estabelecimentosData.map(function(estabelecimento) {
+                            return estabelecimento.color;
+                        }),
+                        borderColor: estabelecimentosData.map(function(estabelecimento) {
+                            return estabelecimento.color;
+                        }),
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'left'
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+{% endblock %}

@@ -12,10 +12,10 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [{% for estabelecimento in estabelecimentos %}  '{{ estabelecimento.category | slice:":10" }}',  {% endfor %}],
+                    labels: [{% for estabelecimento in estabelecimentos %}  '{{ estabelecimento.nome | slice:":10" }}',  {% endfor %}],
                     datasets: [{
-                        label: 'Número de Produtos',
-                        data: [{% for estabelecimento in estabelecimentos %}  {{ estabelecimento.num_of_products }},  {% endfor %}],
+                        label: 'Número de agendamentos',
+                        data: [{% for estabelecimento in estabelecimentos %}  {{ estabelecimento.agendamentos }},  {% endfor %}],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.8)',
                             'rgba(54, 162, 235, 0.8)',
@@ -43,13 +43,13 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Número de Produtos'
+                                text: 'Número de agendamentos'
                             }
                         },
                         x: {
                             title: {
                                 display: true,
-                                text: 'Categorias'
+                                text: 'Estabelecimentos'
                             },
                             maxRotation: 45, 
                             minRotation: 0 
@@ -64,9 +64,6 @@
                 }
             });
 
-            document.getElementById('btnSair').addEventListener('click', function() {
-                window.location.href = "{% url 'logout' %}";
-            });
         </script>
     </div>
 

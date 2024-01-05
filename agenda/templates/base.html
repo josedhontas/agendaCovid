@@ -132,9 +132,13 @@ justify-content: center;
 height: 100vh; 
 }
     
-        canvas {
-            max-width: 100%; /* Para garantir que o gráfico não ultrapasse a largura máxima */
-        }
+canvas {
+    max-width: 100%;
+    max-height: 100%;
+}
+#myChart2{
+    max-width: 40%; 
+}
 
     </style>
 </head>
@@ -167,7 +171,7 @@ height: 100vh;
                     </li>
 
                     <li class="list">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'graficoPizza' %}" class="nav-link">
                             <i class="bx bx-pie-chart-alt icon"></i>
                             <span class="link">Gráfico de Pizza</span>
                         </a>

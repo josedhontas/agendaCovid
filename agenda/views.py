@@ -221,13 +221,28 @@ def graficoBarra(request):
 
     estabelecimentos = [
         {
-            'category': estabelecimento.nome,
-            'num_of_products': len(Agendamento.objects.filter(Q(estabelecimento=estabelecimento.cnes) & Q(finalizado=False)))
+            'nome': estabelecimento.nome,
+            'agendamentos': len(Agendamento.objects.filter(Q(estabelecimento=estabelecimento.cnes) & Q(finalizado=False)))
         }
         for estabelecimento in estabelecimentos
     ]
 
     dados = {'estabelecimentos': estabelecimentos}
     return render(request, 'graficoBarra.html', context=dados)
+
+@user_passes_test(lambda u: u.is_staff)
+def graficoPizza(request):
+    estabelecimentos = Estabelecimento.objects.all()
+
+    estabelecimentos = [
+        {
+            'nome': estabelecimento.nome,
+            'agendamentos': len(Agendamento.objects.filter(Q(estabelecimento=estabelecimento.cnes) & Q(finalizado=False)))
+        }
+        for estabelecimento in estabelecimentos
+    ]
+
+    dados = {'estabelecimentos': estabelecimentos}
+    return render(request, 'graficoPizza.html', context=dados)
 
 
