@@ -197,7 +197,7 @@
           entrar.classList.add("disable")
           cadastro.classList.remove("disable")
           setTimeout(function() {
-            window.location.href = "cadastro"; 
+            window.location.href = "{% url 'cadastro' %}"; 
         }, 500);
       }
   </script>

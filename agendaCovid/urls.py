@@ -22,7 +22,7 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', login, name='login'),
     path('cadastro/', cadastro, name='cadastro'),
-    path('pag_inicial/', pag_inicial, name='pag_inicial'),
+    path('pag_inicial', pag_inicial, name='pag_inicial'),
     path('logout', logout_view, name="logout"),
     path('agendamento', agendamento, name="agendamento"),
     path('visu_agendamento', visu_agendamento, name="visu_agendamento"),
