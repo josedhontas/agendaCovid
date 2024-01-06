@@ -5,25 +5,32 @@
 {% block title %}Painel - Minha Aplicação{% endblock %}
 
 {% block content %}
-    <h2>Bem-vindo ao Painel</h2>
-    <p>Este é o painel principal da sua aplicação.</p>
 
-    <div class="container">
-        <div class="row">
-            {% for estabelecimento in info %}
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ estabelecimento.nome }}</h5>
-                            <p class="card-text">CNES: {{ estabelecimento.cnes }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container2">
+<table class="table" style="width: 80%;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">cnes</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for estabelecimento in info %}
 
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
-    </div>
+      <tr>
+        <th scope="row">1</th>
+        <td>{{ estabelecimento.nome }}</td>
+        <td>{{ estabelecimento.cnes }}</td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
 {% endblock %}
