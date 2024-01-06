@@ -107,7 +107,7 @@ def visu_agendamento(request):
         apto_agendamento_str = "Sim" if apto_agendamento else "Não"
 
         #aqui comeca os dados do agendamento e estabelecimento
-        agendamento = Agendamento.objects.filter(usuario=cpf).last()
+        agendamento = Agendamento.objects.filter(Q(usuario=cpf) & Q(finalizado=False)).last()
         cnes = agendamento.estabelecimento.cnes
         estabelecimento = Estabelecimento.objects.filter(cnes = cnes).first()
         estabelecimento_nome = estabelecimento.nome
@@ -117,8 +117,7 @@ def visu_agendamento(request):
         atrasado = Atrasado(agendamento.data_agendamento)
         atrasado_str = "Sim" if atrasado else "Não"
 
-
-
+        agendamento.atrasado = atrasado
         agendamento.finalizado = atrasado
         agendamento.save()
 

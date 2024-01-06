@@ -27,6 +27,7 @@ class Agendamento(models.Model):
     usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     estabelecimento = models.ForeignKey(Estabelecimento, on_delete=models.CASCADE)
     data_agendamento = models.DateTimeField()
+    atrasado = models.BooleanField(default= False)
     finalizado = models.BooleanField(default=False) 
 
 
