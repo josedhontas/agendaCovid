@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}Painel - Minha Aplicação{% endblock %}
-
 {% block content %}
     <div class="container">
+        <h2 style="margin-bottom: 20px;">Gráfico de pizza</h2>
         <canvas id="myChart2" width="400" height="400"></canvas>
         <script>
             function getRainbowColor(index, total) {
                 var hue = (index / total) * 360;
                 return 'hsl(' + hue + ', 70%, 60%)';
             }
-
             var ctx = document.getElementById('myChart2').getContext('2d');
             var estabelecimentosData = [
                 {% for estabelecimento in estabelecimentos %}

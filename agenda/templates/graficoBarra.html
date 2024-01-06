@@ -1,11 +1,10 @@
 
 {% extends 'base.html' %}
 
-{% block title %}Painel - Minha Aplicação{% endblock %}
-
 {% block content %}
 
     <div class="container">
+        <h2>Gráfico de barras</h2>
         <canvas id="myChart" width="400" height="120"></canvas>
         <script>
             var ctx = document.getElementById('myChart').getContext('2d');
