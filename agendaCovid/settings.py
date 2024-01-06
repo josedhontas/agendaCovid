@@ -119,10 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+MEDIA_URL = '/img/'
 
 MEDIAFILES_DIRS = [
-    os.path.join(BASE_DIR, 'media')
+    os.path.join(BASE_DIR, 'img')
 ]
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
