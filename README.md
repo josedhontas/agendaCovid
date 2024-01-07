@@ -30,4 +30,7 @@ python manage.py runserver
 ```
 5. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 
+comando importar estabelecimentos: python manage.py import_estabelecimentos
+
+
 
