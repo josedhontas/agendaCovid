@@ -72,8 +72,8 @@
    text-decoration: none;
  }
  .lists .nav-link:hover {
-   background-color: #4070f4;
- }
+  background-image: linear-gradient(rgba(0, 0, 50, 0.8), rgba(0, 0, 50, 0.8)), url(/static/img/fundo.png);
+}
  .nav-link .icon {
    margin-right: 14px;
    font-size: 20px;
