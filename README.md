@@ -27,6 +27,10 @@ pip install -r requirements.txt
 4. Após a conclusão da instalação das dependências, execute o seguinte comando para iniciar a aplicação:
 ```shell script
 python manage.py runserver
+
+
+comando importar estabelecimentos: python manage.py import_estabelecimentos
+
 ```
 5. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 
