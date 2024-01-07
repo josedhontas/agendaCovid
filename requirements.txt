@@ -1,3 +1,4 @@
 pytz
-
-comando importar estabelecimentos: python manage.py import_estabelecimentos
+django
+djangorestframework
+validate-docbr
