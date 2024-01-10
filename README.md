@@ -29,9 +29,10 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 5. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
-
-comando importar estabelecimentos: python manage.py import_estabelecimentos
-
+6. Para importar os estabelecimentos presentes no xml use o comando:
+```shell script
+python manage.py import_estabelecimentos
+```
 ## Diagrama de entidade relacionamento
 ![Example Image](https://drive.google.com/uc?id=17Ol6I8_7ajKzDtJJyUZGCnMJaseykNjL)
 
