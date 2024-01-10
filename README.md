@@ -24,15 +24,15 @@ Para executar este projeto, certifique-se de ter o python instalado em seu compu
 ```shell script
 pip install -r requirements.txt
 ```
-4. Após a conclusão da instalação das dependências, execute o seguinte comando para iniciar a aplicação:
-```shell script
-python manage.py runserver
-```
-5. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
-6. Para importar os estabelecimentos presentes no xml use o comando:
+4. Para importar os estabelecimentos presentes no xml use o comando:
 ```shell script
 python manage.py import_estabelecimentos
 ```
+5. Após a conclusão da instalação das dependências, execute o seguinte comando para iniciar a aplicação:
+```shell script
+python manage.py runserver
+```
+6. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 ## Diagrama de entidade relacionamento
 ![Example Image](https://drive.google.com/uc?id=17Ol6I8_7ajKzDtJJyUZGCnMJaseykNjL)
 
