@@ -32,5 +32,9 @@ python manage.py runserver
 
 comando importar estabelecimentos: python manage.py import_estabelecimentos
 
+## Diagrama de entidade relacionamento
+![Example Image](https://drive.google.com/uc?id=17Ol6I8_7ajKzDtJJyUZGCnMJaseykNjL)
+
+
 
 
