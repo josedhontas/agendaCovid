@@ -13,25 +13,58 @@
 <br>
 <div class="container2">
 
-<table class="table table-fixed" style="width: 80%;">
+  <table class="table table-fixed" style="width: 80%;">
     <thead class="thead-dark sticky-top">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Nome</th>
-        <th scope="col">cnes</th>
+        <th scope="col">
+          <input type="text" class="search-input" placeholder="Nome">
+        </th>
+        <th scope="col">
+          <input type="text" class="search-input" placeholder="cnes">
+        </th>
       </tr>
     </thead>
     <tbody>
-        {% for estabelecimento in info %}
-
-      <tr>
-        <th scope="row">1</th>
-        <td>{{ estabelecimento.nome }}</td>
-        <td>{{ estabelecimento.cnes }}</td>
-      </tr>
+      {% for estabelecimento in info %}
+        <tr>
+          <th scope="row">1</th>
+          <td>{{ estabelecimento.nome }}</td>
+          <td>{{ estabelecimento.cnes }}</td>
+        </tr>
       {% endfor %}
-
     </tbody>
   </table>
+
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".search-input").forEach((inputField) => {
+      const tableRows = inputField.closest("table").querySelectorAll("tbody > tr");
+      const headerCell = inputField.closest("th");
+      const otherHeaderCells = headerCell.closest("tr").children;
+      const columnIndex = Array.from(otherHeaderCells).indexOf(headerCell);
+      const searchableCells = Array.from(tableRows).map((row) => row.querySelectorAll("td")[columnIndex]);
+
+      inputField.addEventListener("input", () => {
+        const searchQuery = inputField.value.toLowerCase();
+        console.log("Search Query:", searchQuery);
+      
+        for (const tableCell of searchableCells) {
+          const row = tableCell.closest("tr");
+          const value = tableCell.textContent.toLowerCase().replace(",", "");
+          console.log("Cell Value:", value);
+      
+          row.style.visibility = null;
+      
+          if (value.search(searchQuery) === -1) {
+            row.style.visibility = "collapse";
+          }
+        }
+      });      
+    });
+  });
+</script>
+
 {% endblock %}
