@@ -2,3 +2,4 @@ pytz
 django
 djangorestframework
 validate-docbr
+gunicorn==20.1.0
