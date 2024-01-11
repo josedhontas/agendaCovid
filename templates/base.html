@@ -13,142 +13,146 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
 
-
-
     <style>
         /* Google Fonts - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-body {
-  min-height: 100%;
-  background: #e3f2fd;
-}
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 70px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  background: #fff;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-}
-nav .logo {
-  display: flex;
-  align-items: center;
-  margin: 0 24px;
-}
-.logo .menu-icon {
-  color: #333;
-  font-size: 24px;
-  margin-right: 14px;
-  cursor: pointer;
-}
-.logo .logo-name {
-  color: #333;
-  font-size: 22px;
-  font-weight: 500;
-}
-nav .sidebar {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  height: 100%;
-  width: 260px;
-  padding: 20px 0;
-  background-color: #fff;
-  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
-}
-nav.open .sidebar {
-  left: 0;
-}
-.sidebar .sidebar-content {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 30px 16px;
-}
-.sidebar-content .list {
-  list-style: none;
-}
-.list .nav-link {
-  display: flex;
-  align-items: center;
-  margin: 8px 0;
-  padding: 14px 12px;
-  border-radius: 8px;
-  text-decoration: none;
-}
-.lists .nav-link:hover {
-  background-color: #4070f4;
-}
-.nav-link .icon {
-  margin-right: 14px;
-  font-size: 20px;
-  color: #707070;
-}
-.nav-link .link {
-  font-size: 16px;
-  color: #707070;
-  font-weight: 400;
-}
-.lists .nav-link:hover .icon,
-.lists .nav-link:hover .link {
-  color: #fff;
-}
-.overlay {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  height: 1000vh;
-  width: 200%;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s ease;
-  background: rgba(0, 0, 0, 0.3);
-}
-nav.open ~ .overlay {
-  opacity: 1;
-  left: 260px;
-  pointer-events: auto;
-}
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: "Poppins", sans-serif;
+        }
+        body {
+          min-height: 100%;
+          background: #e3f2fd;
+        }
+        nav {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 70px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          background: #fff;
+          box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+        }
+        nav .logo {
+          display: flex;
+          align-items: center;
+          margin: 0 24px;
+        }
+        .logo .menu-icon {
+          color: #333;
+          font-size: 24px;
+          margin-right: 14px;
+          cursor: pointer;
+        }
+        .logo .logo-name {
+          color: #333;
+          font-size: 22px;
+          font-weight: 500;
+        }
+        nav .barraLateral {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          height: 100%;
+          width: 260px;
+          padding: 20px 0;
+          background-color: #fff;
+          box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+          transition: all 0.4s ease;
+        }
+        nav.aberto .barraLateral {
+          left: 0;
+        }
+        .barraLateral .barraLateral-content {
+          display: flex;
+          height: 100%;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 30px 16px;
+        }
+        .barraLateral-content .list {
+          list-style: none;
+        }
+        .list .nav-link {
+          display: flex;
+          align-items: center;
+          margin: 8px 0;
+          padding: 14px 12px;
+          border-radius: 8px;
+          text-decoration: none;
+        }
+        .listas .nav-link:hover {
+          background-color: #4070f4;
+        }
+        .nav-link .icon {
+          margin-right: 14px;
+          font-size: 20px;
+          color: #707070;
+        }
+        .nav-link .link {
+          font-size: 16px;
+          color: #707070;
+          font-weight: 400;
+        }
+        .listas .nav-link:hover .icon,
+        .listas .nav-link:hover .link {
+          color: #fff;
+        }
+        .overlay {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          height: 1000vh;
+          width: 200%;
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.4s ease;
+          background: rgba(0, 0, 0, 0.3);
+        }
+        nav.aberto ~ .overlay {
+          opacity: 1;
+          left: 260px;
+          pointer-events: auto;
+        }
 
-nav.open ~ .content {
-    margin-left: 260px; 
-}
+        nav.aberto ~ .content {
+          margin-left: 260px; 
+        }
 
-.container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 100vh; 
-}
+        .container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh; 
+        }
 
-.container2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  }
-    
-canvas {
-    max-width: 100%;
-    max-height: 100%;
-}
-#myChart2{
-    max-width: 40%; 
-}
+        .container2 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
 
+        h2 {
+          text-align: center; 
+      }
+
+        canvas {
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        #myChart2 {
+          max-width: 40%; 
+        }
+
+      
     </style>
 </head>
 <body>
@@ -158,14 +162,14 @@ canvas {
             <span class="logo-name">Admin</span>
         </div>
 
-        <div class="sidebar">
+        <div class="barraLateral">
             <div class="logo">
                 <i class="bx bx-menu menu-icon"></i>
                 <span class="logo-name">Admin</span>
             </div>
 
-            <div class="sidebar-content">
-                <ul class="lists">
+            <div class="barraLateral-content">
+                <ul class="listas">
                     <li class="list">
                         <a href="{% url 'telaAdmin' %}" class="nav-link">
                             <i class="bx bx-home-alt icon"></i>
@@ -212,12 +216,12 @@ canvas {
 
         menuBtns.forEach((menuBtn) => {
             menuBtn.addEventListener("click", () => {
-                navBar.classList.toggle("open");
+                navBar.classList.toggle("aberto");
             });
         });
 
         overlay.addEventListener("click", () => {
-            navBar.classList.remove("open");
+            navBar.classList.remove("aberto");
         });
     </script>
 </body>

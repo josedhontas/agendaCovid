@@ -2,15 +2,18 @@ from datetime import datetime
 import pytz
 
 
-def validaData(data):
-    try:
-        data = datetime.date.fromisoformat(data)
-    except ValueError or AttributeError:
-        return False
-    dias_ano = 365.2425
-    idade = int((datetime.date.today() - data).days / dias_ano)
+def validaData(data_nascimento):
+    data_nascimento = datetime.strptime(data_nascimento, '%Y-%m-%d')
+    
+    data_atual = datetime.now()
+    
+    diferenca = data_atual - data_nascimento
+    
+    idade = diferenca.days // 365
+    
     if idade >= 18:
         return True
+    
     else:
         return False
 
@@ -84,6 +87,5 @@ def diaSemanaInvalido(data):
 
 
     
-
 
 

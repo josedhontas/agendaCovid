@@ -26,8 +26,8 @@ def cadastro(request):
             messages.error(request, 'CPF Inválido!')
         elif CustomUser.objects.filter(cpf=cpf).exists():
             messages.error(request, 'CPF já cadastrado')
-        #elif not validaData(data_nascimento):
-        #    messages.error(request, 'Data inválida')
+        elif not validaData(data_nascimento):
+            messages.error(request, 'Menor de idade')
         elif senha1 != senha2:
             messages.error(request, 'As senhas não coincidem')
         elif teve_covid:
@@ -72,8 +72,12 @@ def pag_inicial(request):
         apto_agendamento = request.user.apto_agendamento
         apto_agendamento_str = "Sim" if apto_agendamento else "Não"
         agendamento_usuario = Agendamento.objects.filter(Q(usuario=cpf) & Q(finalizado=False))
+        
+        if apto_agendamento is False:
+            botao = 'Início'
+            caminho = "3"
 
-        if(len(agendamento_usuario) > 0):
+        elif(len(agendamento_usuario) > 0):
             botao = 'Listar agendamento'
             caminho = "1"
         
@@ -141,6 +145,9 @@ def logout_view(request):
 def agendamento(request):
     if request.user.is_authenticated is False:
         return redirect('/')
+    
+    if request.user.apto_agendamento == False:
+        return redirect('pag_inicial')
     
     if request.method == 'POST':
         usuario = request.user
@@ -243,5 +250,4 @@ def graficoPizza(request):
 
     dados = {'estabelecimentos': estabelecimentos}
     return render(request, 'graficoPizza.html', context=dados)
-
 

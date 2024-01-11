@@ -15,7 +15,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <title>Document</title>
+    <title>Agendamento</title>
 
     <style>
         *{
@@ -55,7 +55,7 @@
           left: 50%;
           transform: translate(-50%, -50%);
           background: white;
-          padding: 50px 30px 70px;
+          padding: 50px 20px 30px;
           text-align: center;
           align-items: center;
       }
@@ -109,7 +109,7 @@
   
       .campo-entrada i{
           margin-left: 15px;
-          color: #999
+          color: black
       }
   
       formulario p{
@@ -147,7 +147,7 @@
   
       .botoes button.disable{
           background: #eaeaea;
-          color: #555;
+          color: black;
   
       }
   
@@ -195,7 +195,7 @@
                         <select name="cnes" required class="formulario-select">
                             <option value="Nenhum"> Nenhum</option>
                             {% for estabelecimento in dados_xml %}
-                            <option value="{{ estabelecimento.cnes }}">{{ estabelecimento.nome }}</option>
+                            <option value="{{ estabelecimento.cnes }}">{{ estabelecimento.nome }} - cnes: {{estabelecimento.cnes}}</option>
                             {% endfor %}
                         </select>
                     </div>
