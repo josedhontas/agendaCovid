@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/styles.css">
+    <base href="/">
     <script src="https://kit.fontawesome.com/e73b592546.js" crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -106,7 +106,7 @@
     
     .campo-entrada i{
         margin-left: 15px;
-        color: #999
+        color: black;
     }
     
     form p{
@@ -144,7 +144,7 @@
     
     .botoes button.disable{
         background: #eaeaea;
-        color: #555;
+        color: black;
     
     }
 
@@ -159,7 +159,7 @@
 <body>
     <div class="container2">
         <div class="formulario">
-            <h1>Pag Inicial</h1>
+            <h1>Início</h1>
             <label>Nome:</label>
                 <div class="grupo-entrada">
                     <div class="campo-entrada">
@@ -214,8 +214,11 @@
             if("{{caminho}}" == 1){
                 window.location.href = "{% url 'visu_agendamento' %}";
             }
-            else{
+            else if("{{caminho}}" == 2){
                 window.location.href = "{% url 'agendamento' %}";
+            }
+            else{
+                window.location.href = "{% url 'pag_inicial' %}";
             }
         }
     </script>
