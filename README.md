@@ -41,6 +41,11 @@ python manage.py runserver
 ## Aplicação em deploy
 A aplicação foi hospedada no Render e pode ser acessada pelo seguinte endereço: [agendaCovid](https://agendacovid.josedhonatas.ninja/)
 
+| cargo | cpf | senha |
+|-------------|-------------|-------------|
+| admin   | 08879520547   | admin   |
+
+
 ## Diagrama de entidade relacionamento
 ![Example Image](https://drive.google.com/uc?id=17Ol6I8_7ajKzDtJJyUZGCnMJaseykNjL)
 
