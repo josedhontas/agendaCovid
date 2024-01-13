@@ -1,7 +1,7 @@
 # AgendaCovid
 
 ## Sobre o projeto
-Este projeto, denominado AgendaCovid, foi desenvolvido por José Dhonatas Alves Sales. Ele consiste em uma aplicação web para gerenciamento de vacinas.
+Este projeto, denominado AgendaCovid, foi desenvolvido por José Dhonatas Alves Sales. Ele consiste em uma aplicação web para agendamento de testes de Covid.
 
 ## Tecnologias:
 - Telas:
