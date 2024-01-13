@@ -1,54 +1,50 @@
 # AgendaCovid
 
 ## Sobre o projeto
-Este projeto, denominado AgendaCovid, foi desenvolvido por José Dhonatas Alves Sales. Ele consiste em uma aplicação web para agendamento de testes de Covid.
+O **AgendaCovid** é uma aplicação web desenvolvida por José Dhonatas Alves Sales para agendamento de testes de Covid-19.
 
-## Tecnologias:
-- Telas:
+## Tecnologias Utilizadas:
+- **Telas:**
   - HTML
   - CSS
   - Javascript
-- Back-end:
+- **Back-end:**
   - Django
-- Banco de dados:
+- **Banco de dados:**
   - SQLite 
 
 ## Requisitos
-Para executar este projeto, certifique-se de ter o python instalado em seu computador.
+Antes de executar este projeto, certifique-se de ter o Python instalado em seu computador.
 
-## Como executar
+## Como Executar
 
-1. Certifique-se de ter o python instalado e configurado em sua máquina.
+1. Certifique-se de ter o Python instalado e configurado em sua máquina.
 2. Navegue até o diretório raiz do projeto no terminal.
-3. Execute o seguinte comando para instalar as dependencias do projeto:
-```shell script
-pip install -r requirements.txt
-```
-4. Para criar as migrations e importar os estabelecimentos do xml:
-```shell script
-python manage.py migrate && python manage.py import_estabelecimentos
-```
-5. Para criar o admin use o comando:
-```shell script
-python manage.py createsuperuser
-```
-6. Após a conclusão da instalação das dependências, execute o seguinte comando para iniciar a aplicação:
-```shell script
-python manage.py runserver
-```
-7. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+3. Execute o seguinte comando para instalar as dependências do projeto:
+    ```shell script
+    pip install -r requirements.txt
+    ```
+4. Para criar as migrações e importar os estabelecimentos do XML, utilize o comando:
+    ```shell script
+    python manage.py migrate && python manage.py import_estabelecimentos
+    ```
+5. Crie um superusuário para acessar o painel administrativo:
+    ```shell script
+    python manage.py createsuperuser
+    ```
+6. Após a conclusão da instalação das dependências, inicie a aplicação com o seguinte comando:
+    ```shell script
+    python manage.py runserver
+    ```
+7. Após a inicialização, acesse a aplicação no seu navegador através de [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-## Aplicação em deploy
+## Aplicação em Deploy
 A aplicação foi hospedada no Render e pode ser acessada pelo seguinte endereço: [agendaCovid](https://agendacovid.josedhonatas.ninja/)
 
-| cargo | cpf | senha |
-|-------------|-------------|-------------|
-| admin   | 08879520547   | admin   |
+Informações de teste:
+| Cargo | CPF           | Senha  |
+|-------|---------------|--------|
+| admin | 08879520547   | admin  |
 
-
-## Diagrama de entidade relacionamento
-![Example Image](https://drive.google.com/uc?id=17Ol6I8_7ajKzDtJJyUZGCnMJaseykNjL)
-
-
-
-
+## Diagrama de Entidade-Relacionamento
+![Diagrama ER](https://drive.google.com/uc?id=17Ol6I8_7ajKzDtJJyUZGCnMJaseykNjL)
