@@ -28,11 +28,15 @@ pip install -r requirements.txt
 ```shell script
 python manage.py import_estabelecimentos
 ```
-5. Após a conclusão da instalação das dependências, execute o seguinte comando para iniciar a aplicação:
+5. Para criar o admin use o comando:
+```shell script
+python manage.py createsuperuser
+```
+6. Após a conclusão da instalação das dependências, execute o seguinte comando para iniciar a aplicação:
 ```shell script
 python manage.py runserver
 ```
-6. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+7. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 ## Diagrama de entidade relacionamento
 ![Example Image](https://drive.google.com/uc?id=17Ol6I8_7ajKzDtJJyUZGCnMJaseykNjL)
 
