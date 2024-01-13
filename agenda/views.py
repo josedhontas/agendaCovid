@@ -32,11 +32,13 @@ def cadastro(request):
             messages.error(request, 'As senhas não coincidem')
         elif teve_covid:
             messages.error(request, 'Histórico recente de covid')
+            CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento=data_nascimento, grupos_atendimento=grupo_atendimento, password=senha1)
         elif grupo_atendimento in ["População Privada de Liberdade", "Pessoas com Deficiência Institucionalizadas", "Pessoas ACAMADAS de 80 anos ou mais"]:
             messages.error(request, 'Grupo não atendido')
+            CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento=data_nascimento, grupos_atendimento=grupo_atendimento, password=senha1)
         else:
             try:
-                CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento=data_nascimento, grupos_atendimento=grupo_atendimento, apto_agendamento=apto_agendamento, password=senha1)
+                CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento=data_nascimento, grupos_atendimento=grupo_atendimento, password=senha1)
                 messages.success(request, 'Cadastro realizado com sucesso!')
             except:
                 messages.error(request, 'Usuário já está cadastrado')
@@ -104,6 +106,9 @@ def visu_agendamento(request):
     if request.user.is_authenticated is False:
         return redirect('/')
     
+    if request.user.apto_agendamento == False:
+        return redirect('pag_inicial')
+    
     if request.user.is_authenticated:
         # dados do usuario aqui
         cpf = request.user.cpf
@@ -113,6 +118,10 @@ def visu_agendamento(request):
         #aqui comeca os dados do agendamento e estabelecimento
         agendamento = Agendamento.objects.filter(Q(usuario=cpf) & Q(finalizado=False)).last()
         cnes = agendamento.estabelecimento.cnes
+
+        if cnes is None:
+            return redirect('pag_inicial')
+
         estabelecimento = Estabelecimento.objects.filter(cnes = cnes).first()
         estabelecimento_nome = estabelecimento.nome
         diaSemana = obterDiaSemana(agendamento.data_agendamento)
@@ -161,12 +170,7 @@ def agendamento(request):
         agendamento_usuario = Agendamento.objects.filter(Q(usuario=usuario.cpf) & Q(finalizado=False))
 
         estabelecimento_cheio = Agendamento.objects.filter(Q(data_agendamento=data_hora_agendamento) & Q(finalizado=False) & Q(estabelecimento=cnes))
-        #print(agendamento_usuario.data_agendamento)
-        #print("------")
-        #print(data_hora_agendamento)
-        #agendamentos_estabelecimento = Agendamento.objects.filter(Q(data_agendamento=data_hora_agendamento) & Q(finalizado=False))
 
-        #print(len(agendamentos_estabelecimento))
         if Atrasado(data_hora_agendamento):
             messages.error(request, 'Data inválida')
         elif len(agendamento_usuario) >= 1:
