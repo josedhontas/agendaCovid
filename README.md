@@ -36,10 +36,10 @@ python manage.py createsuperuser
 ```shell script
 python manage.py runserver
 ```
-7. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/){:target="_blank"}
+7. Após a inicialização, você poderá acessar a aplicação no seu navegador em [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ## Aplicação em deploy
-A aplicação foi hospedada no Render e pode ser acessada pelo seguinte endereço: [agendaCovid](https://agendacovid.josedhonatas.ninja/){:target="_blank"}
+A aplicação foi hospedada no Render e pode ser acessada pelo seguinte endereço: [agendaCovid](https://agendacovid.josedhonatas.ninja/)
 
 ## Diagrama de entidade relacionamento
 ![Example Image](https://drive.google.com/uc?id=17Ol6I8_7ajKzDtJJyUZGCnMJaseykNjL)
