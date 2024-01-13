@@ -24,9 +24,9 @@ Para executar este projeto, certifique-se de ter o python instalado em seu compu
 ```shell script
 pip install -r requirements.txt
 ```
-4. Para importar os estabelecimentos presentes no xml use o comando:
+4. Para fazer a migrations e instalar os estabelecimentos presentes no arquivo xml use o comando:
 ```shell script
-python manage.py import_estabelecimentos
+python manage.py migrate && python manage.py import_estabelecimentos
 ```
 5. Para criar o admin use o comando:
 ```shell script
