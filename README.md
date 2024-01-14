@@ -41,10 +41,18 @@ Antes de executar este projeto, certifique-se de ter o Python instalado em seu c
 ## Aplicação em Deploy
 A aplicação foi hospedada no Render e pode ser acessada pelo seguinte endereço: [agendaCovid](https://agendacovid.josedhonatas.ninja/)
 
-Informações de teste:
+Dados de teste inseridos:
 | Cargo | CPF           | Senha  |
 |-------|---------------|--------|
 | admin | 08879520547   | admin  |
+|usuario| 46396495848   | senha  |
+|usuario| 28717409764   | senha  |
+|usuario| 74008317716   | senha  |
+|usuario| 47301529210   | senha  |
+
+
+
+
 
 ## Diagrama de Entidade-Relacionamento
 ![Diagrama ER](https://drive.google.com/uc?id=17Ol6I8_7ajKzDtJJyUZGCnMJaseykNjL)
