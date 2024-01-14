@@ -223,23 +223,23 @@
 
                 </div>
                 <div class="botoes">
-                    <button type="button" id="signinBtn" class="disable">Voltar</button>
-                    <button type="submit" id="signupBtn">Novo agendamento</button>
+                    <button type="button" id="voltar" class="disable">Início</button>
+                    <button type="submit" id="novoAgendamento">Novo agendamento</button>
                 </div>
         </div>
     </div>
 
 
     <script>
-        signinBtn.onclick = function () {
-            signupBtn.classList.add("disable")
-            signinBtn.classList.remove("disable")
+        voltar.onclick = function () {
+            novoAgendamento.classList.add("disable")
+            voltar.classList.remove("disable")
             window.location.href = "{% url 'pag_inicial' %}";
         }
 
-        signupBtn.onclick = function () {
-            signinBtn.classList.add("disable")
-            signupBtn.classList.remove("disable")
+        novoAgendamento.onclick = function () {
+            voltar.classList.add("disable")
+            novoAgendamento.classList.remove("disable")
             window.location.href = "{% url 'agendamento' %}";
         }
     </script>

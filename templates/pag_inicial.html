@@ -194,23 +194,23 @@
                     </div>
                 </div>
                 <div class="botoes">
-                    <button type="button" id="signinBtn" class="disable">Sair</button>
-                    <button type="submit" id="signupBtn">{{botao}}</button>
+                    <button type="button" id="sair" class="disable">Sair</button>
+                    <button type="submit" id="continuar">{{botao}}</button>
                 </div>
         </div>
     </div>
 
 
     <script>
-        signinBtn.onclick = function () {
-            signupBtn.classList.add("disable")
-            signinBtn.classList.remove("disable")
+        sair.onclick = function () {
+            continuar.classList.add("disable")
+            sair.classList.remove("disable")
             window.location.href = "{% url 'logout' %}";
         }
 
-        signupBtn.onclick = function () {
-            signinBtn.classList.add("disable")
-            signupBtn.classList.remove("disable")
+        continuar.onclick = function () {
+            sair.classList.add("disable")
+            continuar.classList.remove("disable")
             if("{{caminho}}" == 1){
                 window.location.href = "{% url 'visu_agendamento' %}";
             }
