@@ -1,5 +1,5 @@
 pytz
-django
+django = 4.1.4
 djangorestframework
 validate-docbr
 gunicorn==20.1.0
