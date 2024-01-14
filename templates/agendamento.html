@@ -246,8 +246,8 @@
               {% endfor %}
             {% endif %}
                 <div class="botoes">
-                    <button type="button" id="signinBtn" class="disable">Voltar</button>
-                    <button type="submit" id="signupBtn">Agendar</button>
+                    <button type="button" id="inicio" class="disable">Voltar</button>
+                    <button type="submit" id="agendar">Agendar</button>
                 </div>
             </formulario>
         </div>
@@ -255,18 +255,18 @@
 
 
     <script>
-        signinBtn.onclick = function () {
-            signupBtn.classList.add("disable")
-            signinBtn.classList.remove("disable")
+        inicio.onclick = function () {
+            agendar.classList.add("disable")
+            inicio.classList.remove("disable")
             setTimeout(function() {
                 window.location.href = "{% url 'pag_inicial' %}";
             }, 500);
 
         }
 
-        signupBtn.onclick = function () {
-            signinBtn.classList.add("disable")
-            signupBtn.classList.remove("disable")
+        agendar.onclick = function () {
+            inicio.classList.add("disable")
+            agendar.classList.remove("disable")
             setTimeout(function() {
                 window.location.href =  "{% url 'visu_agendamento' %}";
             }, 1000);
