@@ -243,7 +243,7 @@ def graficoBarra(request):
 @user_passes_test(lambda u: u.is_staff)
 def graficoPizza(request):
     qtde_aptos = len(CustomUser.objects.filter(apto_agendamento=True))
-    qtde_inaptos = len(CustomUser.objects.filter(apto_agendamento=False))
+    qtde_inaptos = len(CustomUser.objects.filter(apto_agendamento=False).exclude(is_staff=True))
 
     dados = [
         {
