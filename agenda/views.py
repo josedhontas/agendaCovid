@@ -38,7 +38,7 @@ def cadastro(request):
             CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento=data_nascimento, grupos_atendimento=grupo_atendimento, password=senha1)
         else:
             try:
-                CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento=data_nascimento, grupos_atendimento=grupo_atendimento, password=senha1)
+                CustomUser.objects.create_user(nome_completo=nome_completo, cpf=cpf, data_nascimento=data_nascimento, grupos_atendimento=grupo_atendimento, apto_agendamento = apto_agendamento, password=senha1)
                 messages.success(request, 'Cadastro realizado com sucesso!')
             except:
                 messages.error(request, 'Usuário já está cadastrado')
