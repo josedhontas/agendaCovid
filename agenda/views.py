@@ -8,7 +8,9 @@ from .manager import *
 from agenda.validacoes import *
 import xml.etree.ElementTree as ET
 from django.contrib.auth.decorators import user_passes_test
-from datetime import *
+from datetime import datetime
+from django.utils import timezone
+import pytz
 
 
 def cadastro(request):
