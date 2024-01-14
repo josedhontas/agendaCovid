@@ -242,16 +242,21 @@ def graficoBarra(request):
 
 @user_passes_test(lambda u: u.is_staff)
 def graficoPizza(request):
-    estabelecimentos = Estabelecimento.objects.all()
+    qtde_aptos = len(CustomUser.objects.filter(apto_agendamento=True))
+    qtde_inaptos = len(CustomUser.objects.filter(apto_agendamento=False))
 
-    estabelecimentos = [
+    dados = [
         {
-            'nome': estabelecimento.nome,
-            'agendamentos': len(Agendamento.objects.filter(Q(estabelecimento=estabelecimento.cnes) & Q(finalizado=False)))
+            'nome': "Aptos",
+            'qtde': qtde_aptos,
+            'color': 'green'
+        },
+        {
+            'nome': "Inaptos",
+            'qtde': qtde_inaptos,
+            'color': 'red'
         }
-        for estabelecimento in estabelecimentos
     ]
 
-    dados = {'estabelecimentos': estabelecimentos}
+    dados = {'dados': dados}
     return render(request, 'graficoPizza.html', context=dados)
-

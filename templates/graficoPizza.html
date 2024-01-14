@@ -1,43 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container">
-        <br><br><br><br>
-        <br><br><br><br>
-
         <h2 style="margin-bottom: 20px;">Gráfico de pizza</h2>
         <canvas id="myChart2" width="400" height="400"></canvas>
         <script>
-            function getRainbowColor(index, total) {
-                var hue = (index / total) * 360;
-                return 'hsl(' + hue + ', 70%, 60%)';
-            }
             var ctx = document.getElementById('myChart2').getContext('2d');
             var estabelecimentosData = [
-                {% for estabelecimento in estabelecimentos %}
+                {% for dado in dados %}
                     {
-                        nome: '{{ estabelecimento.nome | slice:":10" }}',
-                        agendamentos: {{ estabelecimento.agendamentos }},
-                        color: getRainbowColor({{ forloop.counter0 }}, {{ estabelecimentos|length }})
+                        nome: '{{ dado.nome | slice:":10" }}',
+                        qtde: {{ dado.qtde }},
+                        color: '{{ dado.color }}'
                     },
                 {% endfor %}
             ];
-
+        
             var myChart2 = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: estabelecimentosData.map(function(estabelecimento) {
-                        return estabelecimento.nome;
+                    labels: estabelecimentosData.map(function(dado) {
+                        return dado.nome;
                     }),
                     datasets: [{
-                        label: 'Número de agendamentos',
-                        data: estabelecimentosData.map(function(estabelecimento) {
-                            return estabelecimento.agendamentos;
+                        label: 'Número de qtde',
+                        data: estabelecimentosData.map(function(dado) {
+                            return dado.qtde;
                         }),
-                        backgroundColor: estabelecimentosData.map(function(estabelecimento) {
-                            return estabelecimento.color;
+                        backgroundColor: estabelecimentosData.map(function(dado) {
+                            return dado.color;
                         }),
-                        borderColor: estabelecimentosData.map(function(estabelecimento) {
-                            return estabelecimento.color;
+                        borderColor: estabelecimentosData.map(function(dado) {
+                            return dado.color;
                         }),
                         borderWidth: 2
                     }]
@@ -46,11 +39,13 @@
                     plugins: {
                         legend: {
                             display: true,
-                            position: 'left'
+                            position: 'top',
                         }
                     }
                 }
             });
         </script>
+        
+        
     </div>
 {% endblock %}
